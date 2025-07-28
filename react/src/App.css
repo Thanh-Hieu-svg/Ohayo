@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.radar-wave {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.4); 
+  animation: radarPulse 2s infinite;
+}
+
+.radar-wave.delay-1 {
+  animation-delay: 0.6s;
+}
+.radar-wave.delay-2 {
+  animation-delay: 1.2s;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.8s infinite ease-in-out;
+}
