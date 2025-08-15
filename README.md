@@ -1,2 +1,2 @@
-# Ohayo
-Ohayo
+npm i
+npm run dev
