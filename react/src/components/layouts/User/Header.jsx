@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../../../assets/images/Logo.png";
+import Logo from "../../../assets/GeenNest_ico.png";
 import { Navbar } from "./Navbar";
 import { Search } from "../../icons/Search";
 import { Bag } from "../../icons/Bag";

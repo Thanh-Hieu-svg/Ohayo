@@ -5,17 +5,17 @@ import FlashDealImage from "../../../assets/images/Banner/carousel-3.jpg";
 
 export const FlashDeal = () => {
   const features = [
-    "Bộ sưu tập trà phong phú",
-    "Gia vị & phụ liệu tự nhiên",
-    "Phụ kiện pha trà độc đáo",
-    "Tốt cho sức khỏe & sắc đẹp",
+    "Thực phẩm sạch và an toàn",
+    "Sản phẩm hữu cơ đạt chuẩn",
+    "Đa dạng mặt hàng thân thiện môi trường",
+    "Góp phần bảo vệ sức khỏe và hành tinh",
   ];
 
   return (
     <div className="relative h-[500px] md:h-[600px] overflow-hidden text-white font-sans mb-20">
       <img
         src={FlashDealImage}
-        alt="Nền Trà"
+        alt="Siêu Thị Xanh"
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
@@ -27,16 +27,16 @@ export const FlashDeal = () => {
       <div className="container absolute inset-0 z-20 flex items-center px-6 md:px-20">
         <div className="w-[700px] space-y-6">
           <h2 className="text-3xl md:text-[42px] font-playfair font-bold leading-snug text-white">
-            <span className="text-[#252c30]">Trà – Thức uống </span>
+            <span className="text-[#252c30]">Siêu Thị Xanh – </span>
             <span className="text-white">
-              sức khỏe <span className="text-[#252c30]">và</span> vẻ đẹp
+              Thực phẩm sạch <span className="text-[#252c30]">và</span> bền vững
             </span>
           </h2>
 
           <p className="font-playfair italic text-xl font-medium text-white leading-relaxed">
-            Trà không chỉ mang lại sự thư giãn mà còn giúp thanh lọc cơ thể, làm
-            đẹp da và tăng cường sức khỏe. Hãy khám phá sự tinh tế từ từng lá
-            trà được chọn lọc kỹ lưỡng.
+            Siêu Thị Xanh cam kết mang đến thực phẩm sạch, an toàn và thân thiện
+            với môi trường. Chúng tôi đồng hành cùng bạn trong hành trình xây
+            dựng lối sống xanh và bền vững.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mb-12">

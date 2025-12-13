@@ -1,0 +1,95 @@
+components:
+  schemas:
+    OrderResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        cart:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 507f1f77bcf86cd799439012
+              name:
+                type: string
+                example: Rau cải xanh hữu cơ
+              price:
+                type: number
+                example: 25000
+              quantity:
+                type: integer
+                example: 2
+              images:
+                type: array
+                items:
+                  type: string
+                example: ["/uploads/1234567890-image1.jpg"]
+        shippingAddress:
+          type: object
+          properties:
+            name:
+              type: string
+              example: Nguyen Van A
+            phone:
+              type: string
+              example: 0912345678
+            address:
+              type: string
+              example: 123 Nguyen Trai, Q1, TP.HCM
+        email:
+          type: string
+          format: email
+          example: nguyenvana@example.com
+        paymentMethod:
+          type: string
+          example: COD
+        subtotal:
+          type: number
+          example: 50000
+        status:
+          type: string
+          enum:
+            - cho_xac_nhan
+            - da_xac_nhan
+            - dang_giao_hang
+            - da_nhan_hang
+            - da_huy
+          example: cho_xac_nhan
+        vnp_TxnRef:
+          type: string
+          example: ""
+        createdAt:
+          type: string
+          format: date-time
+          example: 2025-01-10T10:30:00.000Z
+
+    Order:
+      type: object
+      required:
+        - cart
+        - shippingAddress
+        - email
+        - paymentMethod
+        - subtotal
+      properties:
+        cart:
+          type: array
+          items:
+            type: object
+        shippingAddress:
+          type: object
+        email:
+          type: string
+        paymentMethod:
+          type: string
+        subtotal:
+          type: number
+        status:
+          type: string
+          default: pending
+        vnp_TxnRef:
+          type: string

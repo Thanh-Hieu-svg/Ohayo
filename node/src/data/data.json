@@ -1,0 +1,409 @@
+{
+  "greetings": [
+    "Xin chào! Siêu Thị Xanh có thể giúp gì cho bạn hôm nay?",
+    "Chào bạn! Siêu Thị Xanh luôn sẵn sàng phục vụ 🥬🍎",
+    "Xin chào! Bạn muốn mua rau củ, trái cây hay cần tư vấn món ăn?",
+    "Rất vui được gặp bạn! Bạn đang tìm sản phẩm gì?",
+    "Chào buổi sáng! Hôm nay bạn cần mua gì?",
+    "Hi! Siêu Thị Xanh xin được tư vấn cho bạn.",
+    "Chào mừng đến với Siêu Thị Xanh - Nơi thực phẩm sạch cho gia đình Việt!",
+    "Hello! Siêu Thị Xanh luôn ở đây để phục vụ bạn.",
+    "Chào bạn! Hôm nay bạn muốn thử món gì mới?",
+    "Xin chào! Siêu Thị Xanh cam kết 100% hàng tươi ngon."
+  ],
+
+  "smalltalk": {
+    "hỏi thăm": [
+      "Mình khỏe, cảm ơn bạn! Còn bạn thì sao?",
+      "Hôm nay bạn muốn ăn gì để Siêu Thị Xanh gợi ý nhé?",
+      "Mình rất khỏe! Bạn có cần tư vấn gì không?",
+      "Cảm ơn! Siêu Thị Xanh luôn sẵn sàng phục vụ bạn."
+    ],
+    "cảm ơn": [
+      "Cảm ơn bạn đã tin tưởng Siêu Thị Xanh ❤️",
+      "Rất vui được hỗ trợ bạn!",
+      "Không có gì! Hãy quay lại thường xuyên nhé!",
+      "Cảm ơn! Hy vọng bạn hài lòng với dịch vụ."
+    ],
+    "tạm biệt": [
+      "Chúc bạn một ngày tốt lành 🌱",
+      "Hẹn gặp lại bạn tại Siêu Thị Xanh!",
+      "Tạm biệt! Chúc bạn luôn khỏe mạnh!",
+      "Bye! Nhớ ghé lại nhé!"
+    ],
+    "xin lỗi": [
+      "Không sao đâu! Bạn cần gì cứ hỏi nhé.",
+      "Đừng lo! Siêu Thị Xanh luôn sẵn sàng giúp bạn.",
+      "Không vấn đề gì! Mình hiểu mà."
+    ],
+    "khen": [
+      "Cảm ơn bạn! Đó là động lực để Siêu Thị Xanh phục vụ tốt hơn.",
+      "Siêu Thị Xanh rất vui khi được bạn yêu thích!",
+      "Cảm ơn! Bạn quá tốt."
+    ],
+    "buồn": [
+      "Hy vọng rau củ tươi ngon sẽ làm bạn vui hơn!",
+      "Ăn trái cây tươi giúp tâm trạng tốt hơn đấy!"
+    ],
+    "vui": [
+      "Thật tuyệt! Chúc bạn luôn vui vẻ!",
+      "Siêu Thị Xanh cũng vui khi bạn vui!"
+    ]
+  },
+
+  "knowledge": {
+    "bảo quản rau": "Rau lá nên bọc giấy thấm nước, cho vào túi kín và bảo quản ngăn mát. Dùng tốt nhất trong 2-3 ngày.",
+    "bảo quản củ": "Khoai tây, hành, tỏi nên để nơi khô ráo, tránh ánh nắng. Không để tủ lạnh.",
+    "bảo quản trái cây": "Trái cây chín bảo quản ngăn mát 3-5 ngày. Trái cây xanh để nơi thoáng cho chín tự nhiên.",
+    "bảo quản cà chua": "Cà chua chín để ngăn mát, cà chua xanh để ngoài cho chín.",
+    "bảo quản dưa leo": "Bọc giấy ẩm, để ngăn mát tủ lạnh 3-5 ngày.",
+    "bảo quản cam quýt": "Để nơi thoáng mát, dùng trong 1 tuần. Ngăn mát kéo dài 2 tuần.",
+    "bảo quản chuối": "Treo chuối lên, tránh ánh nắng trực tiếp. Bọc cuống chuối bằng màng bọc thực phẩm.",
+    "bảo quản rau thơm": "Rửa sạch, để ráo, bọc giấy ẩm và bảo quản ngăn mát.",
+    "bảo quản táo": "Để riêng vì táo sinh khí ethylene làm chín trái cây khác. Bảo quản tủ lạnh 1-2 tháng.",
+    "bảo quản bơ": "Bơ xanh để ngoài cho chín, bơ chín bảo quản tủ lạnh 3-5 ngày.",
+    "bảo quản xoài": "Xoài chín bọc giấy, bảo quản tủ lạnh 5-7 ngày.",
+    "bảo quản nho": "Không rửa trước khi bảo quản. Để ngăn mát, dùng trong 1 tuần.",
+    "bảo quản dưa hấu": "Dưa nguyên quả để ngoài, dưa cắt bọc màng, bảo quản tủ lạnh 3-4 ngày.",
+    "bảo quản rau muống": "Cắt bỏ rễ, bọc giấy ẩm, bảo quản ngăn mát 2-3 ngày.",
+    "bảo quản bí đỏ": "Bí nguyên quả để nơi khô ráo, dùng được 1-3 tháng. Bí cắt bọc màng, tủ lạnh 5-7 ngày.",
+    "lợi ích rau hữu cơ": "Rau hữu cơ không hóa chất, giàu vitamin, an toàn cho sức khỏe và môi trường.",
+    "lợi ích trái cây": "Trái cây giúp tăng đề kháng, đẹp da, hỗ trợ tiêu hóa và tim mạch.",
+    "ăn rau mỗi ngày": "Ăn 300-400g rau/ngày giúp cơ thể khỏe mạnh, giảm nguy cơ bệnh tim mạch.",
+    "ăn trái cây đúng cách": "Nên ăn trái cây sau bữa ăn 30 phút hoặc buổi sáng. Không ăn quá nhiều trái cây có đường cao.",
+    "rau hữu cơ khác gì rau thường": "Rau hữu cơ không dùng thuốc trừ sâu, phân bón hóa học, an toàn hơn.",
+    "tại sao nên ăn rau xanh": "Rau xanh giàu chất xơ, vitamin, giúp giảm cholesterol, tốt cho tiêu hóa.",
+    "lợi ích ăn chay": "Ăn chay giúp giảm cân, thanh lọc cơ thể, giảm nguy cơ bệnh tim mạch.",
+    "nên ăn trái cây lúc nào": "Buổi sáng hoặc giữa bữa là tốt nhất để hấp thụ dinh dưỡng.",
+    "rau củ tốt cho mắt": "Cà rốt, rau bina, bí đỏ giàu vitamin A tốt cho mắt.",
+    "trái cây tốt cho da": "Cam, bưởi, dâu tây, kiwi giàu vitamin C giúp da sáng mịn.",
+    "thực phẩm tăng chiều cao": "Rau xanh, sữa, trứng, cá hồi, hạt chia giúp phát triển chiều cao.",
+    "thực phẩm tốt cho xương": "Rau xanh đậm, sữa, cá, đậu nành giàu canxi.",
+    "rửa rau đúng cách": "Ngâm rau trong nước muối loãng 5-10 phút, rửa sạch nhiều lần.",
+    "chọn rau tươi": "Chọn rau lá xanh, không úa, không vàng, không sâu.",
+    "chọn trái cây ngon": "Chọn trái nặng tay, vỏ căng mịn, không bầm dập.",
+    "rau nào ăn sống được": "Xà lách, cà chua, dưa leo, cải thảo có thể ăn sống.",
+    "trái cây nào không nên ăn nhiều": "Trái cây có đường cao như nhãn, vải, mít nên ăn vừa phải.",
+    "rau củ tốt cho dạ dày": "Bí đỏ, cải bắp, cà rốt giúp bảo vệ niêm mạc dạ dày.",
+    "ăn rau sống hay chín": "Rau sống giữ vitamin C, rau chín dễ tiêu hóa hơn.",
+    "nước ép trái cây có tốt không": "Nước ép tươi tốt nhưng nên ăn trái nguyên quả để giữ chất xơ."
+  },
+
+  "nutrition": {
+    "dinh dưỡng rau xanh": "Giàu vitamin A, C, K, chất xơ, sắt, canxi.",
+    "dinh dưỡng trái cây": "Giàu vitamin C, kali, chất chống oxy hóa.",
+    "dinh dưỡng cà rốt": "Giàu beta-carotene, vitamin A, tốt cho mắt.",
+    "dinh dưỡng cam": "Giàu vitamin C, chất xơ, hỗ trợ miễn dịch.",
+    "dinh dưỡng chuối": "Giàu kali, magiê, năng lượng nhanh.",
+    "dinh dưỡng táo": "Giàu chất xơ, vitamin C, hỗ trợ tiêu hóa.",
+    "dinh dưỡng dưa hấu": "Giàu nước, vitamin A, C, chống mất nước.",
+    "dinh dưỡng bí đỏ": "Giàu beta-carotene, chất xơ, vitamin E.",
+    "dinh dưỡng bơ": "Giàu chất béo lành mạnh, vitamin E, K, kali.",
+    "dinh dưỡng cà chua": "Giàu lycopene, vitamin C, chống oxy hóa.",
+    "dinh dưỡng bông cải xanh": "Giàu vitamin C, K, chất xơ, chống ung thư.",
+    "dinh dưỡng rau bina": "Giàu sắt, canxi, vitamin K, tốt cho máu.",
+    "dinh dưỡng nho": "Giàu chất chống oxy hóa, resveratrol tốt cho tim.",
+    "dinh dưỡng kiwi": "Giàu vitamin C gấp đôi cam, chất xơ cao.",
+    "dinh dưỡng xoài": "Giàu vitamin A, C, chất xơ, tốt cho tiêu hóa.",
+    "thực phẩm tốt cho tim mạch": "Rau xanh, trái cây, cá hồi, hạt óc chó, dầu olive.",
+    "thực phẩm tốt cho tiêu hóa": "Chuối, đu đủ, sữa chua, rau xanh.",
+    "thực phẩm tăng đề kháng": "Cam, bưởi, gừng, tỏi, rau cải.",
+    "thực phẩm giảm stress": "Bơ, chuối, hạnh nhân, trà xanh.",
+    "thực phẩm tốt cho não": "Quả óc chó, bơ, cá hồi, việt quất.",
+    "thực phẩm detox": "Rau xanh, chanh, gừng, bưởi, dưa leo.",
+    "thực phẩm tốt cho gan": "Rau diếp, atisô, bưởi, nghệ.",
+    "thực phẩm chống lão hóa": "Việt quất, cà chua, bơ, rau xanh đậm.",
+    "thực phẩm tốt cho tóc": "Rau bina, cà rốt, bơ, hạt, trứng.",
+    "thực phẩm tốt cho răng": "Táo, cà rốt, cần tây giúp làm sạch răng tự nhiên.",
+    "vitamin c ở đâu": "Cam, chanh, ớt chuông, kiwi, đu đủ.",
+    "vitamin a ở đâu": "Cà rốt, bí đỏ, rau bina, khoai lang.",
+    "chất xơ ở đâu": "Rau xanh, trái cây, ngũ cốc nguyên hạt.",
+    "kali ở đâu": "Chuối, khoai lang, bơ, rau bina.",
+    "sắt ở đâu": "Rau bina, rau ngót, đậu, thịt đỏ."
+  },
+
+  "recipes": {
+    "món chay": ["Canh rau củ chay", "Đậu hũ xào nấm", "Salad rau trộn", "Rau muống xào tỏi", "Canh cải nấu đậu hũ", "Cà ri rau củ", "Bún chay"],
+    "món giảm cân": ["Salad rau xanh", "Súp bí đỏ", "Sinh tố rau củ", "Canh rau không dầu", "Rau luộc chấm tương", "Nước ép cần tây"],
+    "món nhanh gọn": ["Rau muống xào tỏi", "Canh cải nấu thịt", "Trứng chiên rau củ", "Xào rau thập cẩm", "Canh chua rau", "Salad trộn nhanh"],
+    "món cho bé": ["Cháo rau củ", "Súp bí đỏ nghiền", "Sinh tố chuối bơ", "Rau luộc nghiền", "Cháo cá rau", "Khoai lang hấp"],
+    "món cho bà bầu": ["Canh rau ngót", "Salad rau trộn", "Sinh tố bơ sữa chua", "Súp rau củ", "Canh cua rau đay", "Nước ép cà rốt"],
+    "món mùa hè": ["Sinh tố dưa hấu", "Salad trái cây", "Canh chua rau", "Rau trộn chanh dầu", "Nước ép cam", "Chè hoa quả"],
+    "món mùa đông": ["Súp bí đỏ", "Canh rau củ nóng", "Xào rau thập cẩm", "Lẩu rau", "Canh khoai mì"],
+    "công thức salad": "Xà lách + cà chua + dưa leo + dầu olive + chanh + muối tiêu. Có thể thêm bơ, hạt điều.",
+    "công thức sinh tố": "Chuối + dứa + sữa chua + đá. Xay 1 phút. Có thể thêm mật ong.",
+    "công thức canh chua": "Cà chua + dứa + rau muống + me + đường + muối. Nấu sôi 5 phút.",
+    "công thức xào rau": "Rau + tỏi + dầu ăn + muối. Xào nhanh lửa lớn 2-3 phút.",
+    "công thức súp bí đỏ": "Bí đỏ hấp chín + sữa tươi + muối tiêu. Xay nhuyễn.",
+    "nấu cơm với rau": "Thêm đậu, ngô, cà rốt vào cơm khi nấu để bổ sung dinh dưỡng.",
+    "làm nước ép": "Cam + cà rốt + mật ong. Vắt lấy nước, uống ngay.",
+    "làm smoothie bowl": "Chuối đông lạnh + sữa chua + granola + trái cây tươi.",
+    "làm pickles": "Cà rốt + dưa leo ngâm giấm, đường, muối.",
+    "làm salad Nga": "Khoai tây + cà rốt + đậu Hà Lan + dưa leo + sốt mayonnaise.",
+    "làm nộm rau": "Rau sống + nước mắm + đường + chanh + ớt + đậu phộng.",
+    "món ăn vặt từ rau củ": "Khoai lang chiên, khoai tây chiên, bí đỏ nướng.",
+    "món khai vị": "Salad trộn, gỏi cuốn rau củ, rau sống chấm tương."
+  },
+
+  "products": {
+    "rau": ["Rau muống", "Cải xanh", "Cải thảo", "Xà lách", "Rau dền", "Cải ngọt", "Rau bina", "Cải bẹ xanh", "Rau ngót", "Rau thơm", "Cần tây", "Húng quế", "Ngò rí"],
+    "củ": ["Khoai tây", "Khoai lang", "Cà rốt", "Củ dền", "Củ cải trắng", "Hành tây", "Tỏi", "Gừng", "Nghệ", "Khoai môn"],
+    "trái cây": ["Táo", "Cam", "Chuối", "Xoài", "Nho", "Dưa hấu", "Bưởi", "Dâu tây", "Kiwi", "Đu đủ", "Dứa", "Mận", "Lê", "Thanh long", "Việt quất", "Bơ", "Dừa", "Mít"],
+    "rau hữu cơ": "100% rau đạt chuẩn an toàn, không thuốc trừ sâu, được chứng nhận hữu cơ.",
+    "trái cây nhập khẩu": "Táo Mỹ, nho Úc, kiwi New Zealand, bơ Chile, việt quất Canada.",
+    "rau theo mùa": "Rau mùa luôn tươi, giá tốt, dinh dưỡng cao nhất.",
+    "giá": "Giá từ 15.000đ – 50.000đ/kg tùy loại. Rau hữu cơ cao cấp có thể đến 80.000đ/kg.",
+    "khuyến mãi": "Giảm giá 10-20% cuối tuần. Flash sale giữa tuần giảm đến 30%.",
+    "combo tiết kiệm": "Combo rau củ + trái cây chỉ từ 99.000đ. Combo gia đình 199.000đ.",
+    "sản phẩm mới": "Mỗi tuần có rau củ, trái cây mới về. Theo dõi trên website.",
+    "bestseller": "Rau cải xanh, cam Úc, chuối già luôn bán chạy nhất.",
+    "rau baby": "Rau non cao cấp cho salad: baby kale, baby spinach.",
+    "trái cây cắt sẵn": "Hộp trái cây cắt sẵn tiện lợi, giá 50.000đ - 100.000đ.",
+    "nấm các loại": "Nấm rơm, nấm đông cô, nấm bào ngư, nấm kim châm.",
+    "gia vị tươi": "Sả, gừng, nghệ, tỏi, ớt tươi."
+  },
+
+  "shopping": {
+    "cách đặt hàng": "Chọn sản phẩm → Thêm giỏ hàng → Thanh toán. Rất đơn giản!",
+    "theo dõi đơn": "Theo dõi trạng thái đơn trong mục Đơn hàng, có cập nhật real-time.",
+    "hủy đơn": "Đơn hàng có thể hủy trước khi shipper nhận hàng.",
+    "đổi sản phẩm": "Liên hệ hotline trong 24h để đổi sản phẩm nếu không hài lòng.",
+    "tích điểm": "Mua hàng tích điểm, đổi quà hấp dẫn. 100 điểm = 10.000đ.",
+    "mã giảm giá": "Nhập mã giảm giá khi thanh toán. Mã mới mỗi tuần.",
+    "đăng ký thành viên": "Đăng ký nhận ưu đãi độc quyền, giảm 15% đơn đầu.",
+    "quà tặng": "Đơn từ 300.000đ nhận quà tặng. Đơn từ 500.000đ freeship toàn quốc.",
+    "đặt hàng nhanh": "Gọi hotline 0123456789 để đặt hàng nhanh, giao trong 1-2 giờ.",
+    "đặt hàng định kỳ": "Đặt lịch giao hàng định kỳ (tuần/tháng), giảm thêm 5%.",
+    "đặt hàng số lượng lớn": "Đặt từ 10kg trở lên được giảm giá buôn.",
+    "xem trước sản phẩm": "Hình ảnh sản phẩm thật 100%, không photoshop."
+  },
+
+  "shipping": {
+    "giao hàng": "Giao hàng toàn quốc, miền Bắc, Trung, Nam.",
+    "nội thành": "Nội thành TP.HCM giao trong 2-4 giờ, Hà Nội 3-5 giờ.",
+    "tỉnh": "Các tỉnh khác 1-3 ngày. Vùng xa 3-5 ngày.",
+    "phí ship": "15.000đ nội thành, 30.000đ tỉnh. Miễn phí đơn trên 200.000đ.",
+    "giao hàng siêu tốc": "Giao trong 1 giờ với phí 30.000đ (nội thành, giờ hành chính).",
+    "đóng gói": "Đóng gói cẩn thận, thùng carton chuyên dụng, giữ độ tươi sản phẩm.",
+    "giao hàng đúng giờ": "Cam kết giao đúng khung giờ hẹn, trễ hoàn 50% phí ship.",
+    "theo dõi shipper": "Theo dõi shipper real-time trên app, biết chính xác vị trí.",
+    "giao hàng tận tay": "Shipper giao tận tay, kiểm tra hàng trước khi thanh toán.",
+    "giao hàng ban đêm": "Hỗ trợ giao hàng đến 21h (nội thành)."
+  },
+
+  "payment": {
+    "thanh toán": "Hỗ trợ COD, VNPAY, chuyển khoản ngân hàng, ví điện tử.",
+    "cod": "Thanh toán khi nhận hàng. An toàn, tiện lợi.",
+    "vnpay": "Thanh toán online bằng ATM, thẻ quốc tế, QR code. Giảm 2% khi thanh toán online.",
+    "chuyển khoản": "Chuyển khoản trước, giao hàng sau. Giảm thêm 1%.",
+    "ví điện tử": "Hỗ trợ Momo, ZaloPay, ShopeePay. Nhận cashback.",
+    "trả góp": "Trả góp 0% qua thẻ tín dụng với đơn từ 500.000đ.",
+    "hóa đơn": "Xuất hóa đơn VAT theo yêu cầu, gửi qua email.",
+    "hoàn tiền": "Hoàn tiền trong 24h nếu sản phẩm lỗi.",
+    "thanh toán an toàn": "Mọi giao dịch được mã hóa SSL 256-bit."
+  },
+
+  "support": {
+    "đổi trả": "Đổi trả trong 24h nếu sản phẩm lỗi hoặc không đúng mô tả.",
+    "chất lượng": "Hoàn tiền 100% nếu sản phẩm không đạt chất lượng cam kết.",
+    "giờ hỗ trợ": "8h – 20h mỗi ngày, kể cả Chủ nhật và ngày lễ.",
+    "khiếu nại": "Gửi khiếu nại qua hotline, email hoặc chat trực tuyến. Phản hồi trong 30 phút.",
+    "bảo hành": "Cam kết chất lượng 100%, không hài lòng hoàn tiền.",
+    "tư vấn dinh dưỡng": "Tư vấn miễn phí chế độ ăn uống qua hotline hoặc Zalo.",
+    "chăm sóc khách hàng": "Đội ngũ CSKH nhiệt tình, chuyên nghiệp, giải đáp 24/7.",
+    "feedback": "Đánh giá sau mỗi đơn hàng để giúp Siêu Thị Xanh cải thiện.",
+    "chính sách bảo mật": "Thông tin khách hàng được bảo mật tuyệt đối."
+  },
+
+  "contact": {
+    "hotline": "0123456789 (8h-20h)",
+    "email": "support@sieuthixanh.com",
+    "địa chỉ": "123 Nguyễn Tất Thành, Quận 12, TP.HCM",
+    "facebook": "facebook.com/sieuthixanh",
+    "zalo": "Zalo: 0123456789",
+    "website": "www.sieuthixanh.com",
+    "giờ mở cửa": "8h – 20h mỗi ngày (kể cả Chủ nhật)",
+    "instagram": "@sieuthixanh",
+    "youtube": "youtube.com/sieuthixanh",
+    "tiktok": "@sieuthixanh"
+  },
+
+  "ai_suggestions": {
+    "gợi ý theo thời tiết": "Thời tiết nóng: dưa hấu, cam, rau xanh. Thời tiết lạnh: súp bí đỏ, canh rau củ.",
+    "gợi ý hôm nay ăn gì": "Hôm nay thử canh rau củ và salad trái cây nhé! Hoặc xào rau muống tỏi đơn giản.",
+    "gợi ý cho gia đình": "Combo rau củ + trái cây tươi tiết kiệm, đủ dinh dưỡng cho cả nhà.",
+    "gợi ý cho người ăn kiêng": "Rau xanh, trái cây ít đường (dưa hấu, dưa leo), sữa chua không đường.",
+    "gợi ý cho người bận rộn": "Combo rau sơ chế sẵn, nấu trong 10 phút. Hoặc salad trộn nhanh.",
+    "gợi ý cho người cao tuổi": "Rau luộc, trái cây mềm (chuối, đu đủ), dễ tiêu hóa.",
+    "gợi ý món Tết": "Dưa hấu, dứa, cam, quýt, măng khô, dưa hành.",
+    "gợi ý món tiệc": "Salad trái cây, rau củ cuộn, sinh tố, nước ép tươi.",
+    "gợi ý cho người tập gym": "Rau xanh, chuối, bơ, sữa chua, trứng, thịt nạc.",
+    "gợi ý cho người ăn chay": "Đa dạng rau củ, đậu hũ, nấm, trái cây.",
+    "gợi ý theo ngân sách": "Rau mùa giá rẻ: rau muống, cải xanh, cà chua, chuối, đu đủ."
+  },
+
+  "seasonal": {
+    "mùa xuân": "Rau muống, cải xanh, dâu tây, vải, nhãn.",
+    "mùa hè": "Dưa hấu, xoài, bí đỏ, rau dền, măng tây.",
+    "mùa thu": "Táo, lê, cải thảo, bí đỏ, nho.",
+    "mùa đông": "Cam, quýt, súp lơ, cải bắp, bông cải xanh.",
+    "tết nguyên đán": "Dưa hấu, dứa, cam, quýt, măng khô."
+  },
+
+  "health_tips": {
+    "giảm cân": "Ăn nhiều rau xanh, hạn chế tinh bột, uống đủ 2 lít nước/ngày.",
+    "tăng cân": "Ăn thêm chuối, bơ, hạt dinh dưỡng, ăn nhiều bữa nhỏ.",
+    "tăng chiều cao": "Ăn rau xanh, uống sữa, tập thể dục, ngủ đủ 8 giờ.",
+    "đẹp da": "Ăn cam, cà rốt, uống đủ nước, ngủ đủ giấc, tránh stress.",
+    "tăng cơ": "Ăn rau xanh, thịt nạc, trứng, sữa, tập tạ đều đặn.",
+    "giảm cholesterol": "Ăn yến mạch, táo, rau xanh, cá hồi, hạt óc chó.",
+    "tăng đề kháng": "Ăn cam, bưởi, gừng, tỏi, ngủ đủ giấc.",
+    "tốt cho tim": "Rau xanh, trái cây, cá, hạt, dầu olive, hạn chế muối.",
+    "tốt cho gan": "Rau diếp, atisô, bưởi, nghệ, uống đủ nước.",
+    "tốt cho thận": "Dưa leo, dưa hấu, rau xanh, hạn chế muối và protein động vật."
+  },
+
+  "faq": {
+    "siêu thị xanh là gì": "Siêu Thị Xanh chuyên cung cấp rau củ, trái cây sạch, an toàn, tươi mỗi ngày. Cam kết 100% hàng tươi, không hóa chất.",
+    "có giao hàng không": "Có, giao hàng toàn quốc. Nội thành 2-4 giờ, tỉnh 1-3 ngày.",
+    "sản phẩm có tươi không": "Cam kết 100% sản phẩm tươi ngon, không hóa chất. Không hài lòng hoàn tiền.",
+    "có thể đặt hàng online không": "Có, đặt hàng qua website, app hoặc hotline 0123456789.",
+    "có khuyến mãi không": "Có, giảm giá 10-20% cuối tuần. Flash sale giảm đến 30%.",
+    "có bán buôn không": "Có, liên hệ hotline để được báo giá buôn cho nhà hàng, quán ăn.",
+    "có cửa hàng offline không": "Có, địa chỉ: 123 Nguyễn Tất Thành, Quận 12, TP.HCM.",
+    "có ship tận nhà không": "Có, giao tận nhà toàn quốc.",
+    "có thể đổi trả không": "Có, đổi trả trong 24h nếu sản phẩm lỗi.",
+    "làm sao biết hàng tươi": "Hình ảnh sản phẩm thật, có ngày nhập hàng, cam kết tươi 100%."
+  },
+
+  "testimonials": {
+    "khách hàng nói gì": "Khách hàng đánh giá 4.8/5 sao trên 10,000+ đánh giá.",
+    "review tích cực": "Rau tươi ngon, giao nhanh, giá hợp lý - Chị Lan, Q1",
+    "cam kết chất lượng": "100% khách hàng hài lòng hoặc hoàn tiền."
+  },
+
+  "company": {
+    "về chúng tôi": "Siêu Thị Xanh thành lập 2020, cung cấp thực phẩm sạch cho hàng triệu gia đình Việt.",
+    "tầm nhìn": "Trở thành siêu thị thực phẩm sạch số 1 Việt Nam.",
+    "sứ mệnh": "Mang thực phẩm sạch, an toàn đến mọi gia đình với giá cả hợp lý.",
+    "giá trị cốt lõi": "Tươi - Sạch - An toàn - Tận tâm."
+  },
+
+   "user_profiles": {
+    "nhân viên văn phòng": "Ưu tiên món nhanh gọn, dễ nấu, ít dầu mỡ.",
+    "người tập yoga": "Ưu tiên rau xanh, trái cây ít đường, nước detox.",
+    "người ăn kiêng low-carb": "Giảm tinh bột, tăng rau xanh, bơ, hạt.",
+    "người nội trợ": "Ưu tiên combo tiết kiệm, đủ bữa cho gia đình.",
+    "nhà hàng - quán ăn": "Cung cấp số lượng lớn, giá sỉ, giao đúng giờ.",
+    "người bệnh dạ dày": "Ưu tiên rau luộc, tránh cay nóng.",
+    "người bị mỡ máu": "Ăn nhiều chất xơ, hạn chế dầu mỡ."
+  },
+
+  "intent_examples": {
+    "hỏi giá": [
+      "Giá rau muống bao nhiêu?",
+      "Cam Úc hôm nay giá sao?",
+      "Combo gia đình bao nhiêu tiền?"
+    ],
+    "hỏi giao hàng": [
+      "Bao lâu thì nhận được hàng?",
+      "Có giao buổi tối không?",
+      "Giao nhanh trong 1 tiếng được không?"
+    ],
+    "hỏi món ăn": [
+      "Hôm nay ăn gì?",
+      "Có món nào giảm cân không?",
+      "Món nào cho bé ăn dặm?"
+    ]
+  },
+
+  "advanced_recipes": {
+    "thực đơn 7 ngày": {
+      "thứ 2": "Canh rau củ + cá kho",
+      "thứ 3": "Salad rau + trứng luộc",
+      "thứ 4": "Canh bí đỏ + thịt luộc",
+      "thứ 5": "Rau xào thập cẩm",
+      "thứ 6": "Canh chua rau",
+      "thứ 7": "Lẩu rau nấm",
+      "chủ nhật": "Salad trái cây + sinh tố"
+    },
+    "thực đơn eat clean": "Rau luộc, salad, ức gà, cá hấp, trái cây ít đường.",
+    "thực đơn chay trường": "Đậu hũ, nấm, rau củ luộc, canh rong biển.",
+    "thực đơn giảm mỡ": "Rau xanh, bơ, trứng luộc, hạn chế tinh bột."
+  },
+
+  "food_pairing": {
+    "rau nên ăn chung": "Cà chua + dầu olive giúp hấp thu lycopene tốt hơn.",
+    "trái cây không nên ăn chung": "Chuối và sữa dễ gây đầy bụng.",
+    "rau + thịt": "Ăn kèm giúp tiêu hóa tốt hơn.",
+    "trái cây + hạt": "Tăng năng lượng và no lâu."
+  },
+
+  "ai_behavior": {
+    "phản hồi thân thiện": "Luôn xưng hô lịch sự, gần gũi.",
+    "chủ động gợi ý": "Sau mỗi câu trả lời có thể gợi ý thêm sản phẩm.",
+    "ghi nhớ thói quen": "Ghi nhớ loại sản phẩm khách hay mua.",
+    "cảnh báo sức khỏe": "Nhắc ăn vừa phải với trái cây nhiều đường."
+  },
+
+  "error_handling": {
+    "không hiểu câu hỏi": "Mình chưa hiểu ý bạn, bạn nói rõ hơn nhé 😊",
+    "sai thông tin": "Xin lỗi vì sự bất tiện, mình sẽ kiểm tra lại ngay.",
+    "quá tải": "Hệ thống đang đông, vui lòng chờ trong giây lát."
+  },
+
+  "promotion_campaigns": {
+    "thứ 2 xanh": "Giảm 10% rau xanh mỗi thứ 2.",
+    "cuối tuần tươi": "Giảm giá trái cây cuối tuần.",
+    "giờ vàng": "Khung giờ 11h-13h giảm 15%.",
+    "combo tuần": "Combo tuần tiết kiệm cho gia đình.",
+    "khách thân thiết": "Giảm thêm 5% cho khách VIP."
+  },
+
+  "eco_messages": {
+    "bảo vệ môi trường": "Siêu Thị Xanh dùng túi giấy và túi sinh học.",
+    "giảm rác thải": "Khuyến khích khách mang túi cá nhân.",
+    "nông nghiệp bền vững": "Hỗ trợ nông dân trồng rau sạch."
+  },
+
+  "voice_assistant": {
+    "xác nhận": "Dạ, mình đã ghi nhận yêu cầu của bạn.",
+    "chờ xử lý": "Bạn đợi mình kiểm tra trong giây lát nhé.",
+    "kết thúc": "Cảm ơn bạn đã mua sắm tại Siêu Thị Xanh 🌱"
+  },
+
+  "training_phrases": {
+    "xin tư vấn": [
+      "Tư vấn giúp tôi",
+      "Cho tôi hỏi",
+      "Gợi ý cho tôi"
+    ],
+    "mua hàng": [
+      "Tôi muốn mua",
+      "Thêm vào giỏ",
+      "Đặt hàng ngay"
+    ]
+  },
+
+  "business_support": {
+    "nhà hàng": "Cung cấp rau củ số lượng lớn, giá sỉ.",
+    "trường học": "Cung cấp thực phẩm sạch cho bếp ăn.",
+    "công ty": "Combo trái cây văn phòng theo tuần."
+  },
+
+  "analytics_tags": {
+    "quan tâm sức khỏe": true,
+    "quan tâm giá rẻ": true,
+    "quan tâm ăn chay": true,
+    "quan tâm giao nhanh": true
+  },
+
+  "future_features": {
+    "ai cá nhân hóa": "Gợi ý sản phẩm theo lịch sử mua.",
+    "nhận diện giọng nói": "Hỗ trợ đặt hàng bằng giọng nói.",
+    "chatbot đa ngôn ngữ": "Hỗ trợ tiếng Anh – Việt.",
+    "tư vấn dinh dưỡng AI": "Phân tích bữa ăn theo nhu cầu người dùng."
+  },
+
+  "fallback": "Siêu Thị Xanh cung cấp thực phẩm sạch mỗi ngày 🌱 Bạn có thể hỏi về: sản phẩm, giá cả, giao hàng, thanh toán, khuyến mãi, công thức món ăn, dinh dưỡng, bảo quản, tư vấn sức khỏe. Hãy cho tôi biết bạn cần gì nhé!"
+}

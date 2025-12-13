@@ -1,0 +1,253 @@
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Đăng ký tài khoản mới
+      description: Tạo tài khoản người dùng mới với username, email và password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - email
+                - password
+                - confirmPassword
+              properties:
+                username:
+                  type: string
+                  example: Nguyen Van A
+                email:
+                  type: string
+                  format: email
+                  example: nguyenvana@example.com
+                password:
+                  type: string
+                  format: password
+                  example: password123
+                confirmPassword:
+                  type: string
+                  format: password
+                  example: password123
+      responses:
+        "201":
+          description: Đăng ký thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đăng ký thành công!
+        "400":
+          description: Lỗi đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email đã tồn tại.
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đã xảy ra lỗi máy chủ.
+
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Đăng nhập
+      description: Đăng nhập với email và password, trả về JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: nguyenvana@example.com
+                password:
+                  type: string
+                  format: password
+                  example: password123
+      responses:
+        "200":
+          description: Đăng nhập thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đăng nhập thành công!
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  user:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: 507f1f77bcf86cd799439011
+                      email:
+                        type: string
+                        example: nguyenvana@example.com
+                      username:
+                        type: string
+                        example: Nguyen Van A
+                      role:
+                        type: string
+                        example: user
+        "401":
+          description: Sai tài khoản hoặc mật khẩu
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Sai tài khoản hoặc mật khẩu
+        "400":
+          description: Thiếu thông tin đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Vui lòng nhập email và mật khẩu.
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đã xảy ra lỗi máy chủ.
+
+  /api/auth/forgot-password:
+    post:
+      tags:
+        - Authentication
+      summary: Quên mật khẩu
+      description: Gửi email chứa link đặt lại mật khẩu (có hiệu lực 1 giờ)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: nguyenvana@example.com
+      responses:
+        "200":
+          description: Đã gửi email thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đã gửi email đặt lại mật khẩu!
+        "404":
+          description: Email không tồn tại
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email không tồn tại!
+        "500":
+          description: Lỗi gửi email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đã xảy ra lỗi khi gửi email!
+
+  /api/auth/reset-password/{token}:
+    post:
+      tags:
+        - Authentication
+      summary: Đặt lại mật khẩu
+      description: Đặt lại mật khẩu mới bằng token nhận từ email
+      parameters:
+        - in: path
+          name: token
+          required: true
+          schema:
+            type: string
+          description: Token đặt lại mật khẩu (nhận từ email)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - password
+                - confirmPassword
+              properties:
+                password:
+                  type: string
+                  format: password
+                  example: newPassword123
+                confirmPassword:
+                  type: string
+                  format: password
+                  example: newPassword123
+      responses:
+        "200":
+          description: Đổi mật khẩu thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đổi mật khẩu thành công!
+        "400":
+          description: Lỗi token hoặc mật khẩu không khớp
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token không hợp lệ hoặc đã hết hạn!

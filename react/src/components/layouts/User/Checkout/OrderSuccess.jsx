@@ -24,7 +24,7 @@ export const OrderSuccess = () => {
             Quay về trang chủ
           </Link>
           <Link
-            to="/order-history"
+            to="/profile/orders"
             className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-semibold"
           >
             Xem đơn hàng

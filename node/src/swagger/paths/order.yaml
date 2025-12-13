@@ -1,0 +1,316 @@
+paths:
+  /api/orders/cod:
+    post:
+      tags:
+        - Orders
+      summary: Tạo đơn hàng COD
+      description: Tạo đơn hàng thanh toán khi nhận hàng (COD)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - cart
+                - shippingAddress
+                - paymentMethod
+                - subtotal
+              properties:
+                cart:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: 507f1f77bcf86cd799439011
+                      name:
+                        type: string
+                        example: Rau cải xanh hữu cơ
+                      price:
+                        type: number
+                        example: 25000
+                      quantity:
+                        type: integer
+                        example: 2
+                      images:
+                        type: array
+                        items:
+                          type: string
+                        example: ["/uploads/1234567890-image1.jpg"]
+                shippingAddress:
+                  type: object
+                  required:
+                    - name
+                    - phone
+                    - address
+                  properties:
+                    name:
+                      type: string
+                      example: Nguyen Van A
+                    phone:
+                      type: string
+                      example: 0912345678
+                    address:
+                      type: string
+                      example: 123 Nguyen Trai, Q1, TP.HCM
+                paymentMethod:
+                  type: string
+                  example: COD
+                subtotal:
+                  type: number
+                  example: 50000
+                vnp_TxnRef:
+                  type: string
+                  example: ""
+      responses:
+        "201":
+          description: Tạo đơn hàng thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tạo đơn hàng COD thành công!
+                  order:
+                    $ref: "#/components/schemas/OrderResponse"
+        "400":
+          description: Thiếu thông tin đơn hàng
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Thiếu thông tin đơn hàng.
+        "401":
+          description: Chưa xác thực
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Chưa xác thực hoặc thiếu email.
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi máy chủ!
+
+  /api/orders/vnpay:
+    post:
+      tags:
+        - Orders
+      summary: Tạo đơn hàng VNPAY
+      description: Tạo đơn hàng thanh toán qua VNPAY
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - cart
+                - shippingAddress
+                - paymentMethod
+                - subtotal
+                - email
+              properties:
+                cart:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      name:
+                        type: string
+                      price:
+                        type: number
+                      quantity:
+                        type: integer
+                      images:
+                        type: array
+                        items:
+                          type: string
+                shippingAddress:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    phone:
+                      type: string
+                    address:
+                      type: string
+                paymentMethod:
+                  type: string
+                  example: VNPAY
+                subtotal:
+                  type: number
+                  example: 50000
+                email:
+                  type: string
+                  format: email
+                  example: nguyenvana@example.com
+                orderDesc:
+                  type: string
+                  example: Thanh toán đơn hàng
+                amount:
+                  type: number
+                  example: 50000
+      responses:
+        "201":
+          description: Tạo đơn hàng thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tạo đơn hàng VNPAY thành công!
+                  order:
+                    $ref: "#/components/schemas/OrderResponse"
+        "400":
+          description: Thiếu thông tin đơn hàng
+        "401":
+          description: Thiếu email
+        "500":
+          description: Lỗi server
+
+  /api/orders:
+    get:
+      tags:
+        - Orders
+      summary: Lấy danh sách đơn hàng
+      description: Lấy tất cả đơn hàng, sắp xếp theo ngày tạo giảm dần
+      responses:
+        "200":
+          description: Danh sách đơn hàng
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OrderResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi máy chủ!
+
+  /api/orders/{id}/status:
+    patch:
+      tags:
+        - Orders
+      summary: Cập nhật trạng thái đơn hàng
+      description: Cập nhật trạng thái đơn hàng (cho_xac_nhan, da_xac_nhan, dang_giao_hang, da_nhan_hang, da_huy)
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của đơn hàng
+          example: 507f1f77bcf86cd799439011
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - cho_xac_nhan
+                    - da_xac_nhan
+                    - dang_giao_hang
+                    - da_nhan_hang
+                    - da_huy
+                  example: dang_giao_hang
+      responses:
+        "200":
+          description: Cập nhật thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Cập nhật trạng thái thành công
+                  order:
+                    $ref: "#/components/schemas/OrderResponse"
+        "404":
+          description: Không tìm thấy đơn hàng
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy đơn hàng
+        "500":
+          description: Lỗi server
+
+  /api/orders/stats/products-in-current-month:
+    get:
+      tags:
+        - Orders
+      summary: Thống kê sản phẩm bán trong tháng hiện tại
+      description: Lấy thống kê số lượng và doanh thu của từng sản phẩm trong tháng hiện tại
+      responses:
+        "200":
+          description: Thống kê sản phẩm
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      example: Rau cải xanh hữu cơ
+                    totalSold:
+                      type: integer
+                      example: 150
+                    totalRevenue:
+                      type: number
+                      example: 3750000
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error

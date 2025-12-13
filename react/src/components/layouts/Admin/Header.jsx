@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../../../assets/images/Logo.png";
+import Logo from "../../../assets/GeenNest_ico.png";
 import { Search } from "../../icons/Search";
 import { User } from "../../icons/User";
 import { Link } from "react-router-dom";
@@ -27,14 +27,6 @@ export const Header = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Search
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            className="w-6 h-6 text-lg text-gray-700 hover:text-green-500 transition-colors"
-          />
-
           <User className="w-6 h-6 text-lg text-gray-700 hover:text-green-500 transition-colors" />
         </div>
       </div>

@@ -26,14 +26,14 @@ export const User = ({ className }) => {
   if (user && firstChar) {
     return (
       <div className="relative" ref={menuRef}>
-        <button
+        <div
           title="Tài khoản"
           onClick={() => setOpen((o) => !o)}
           className={`inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-500 text-white font-bold text-lg border-none ${className}`}
           style={{ cursor: "pointer" }}
         >
           {firstChar}
-        </button>
+        </div>
         {open && (
           <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-md z-50">
             <Link
@@ -44,13 +44,13 @@ export const User = ({ className }) => {
               <FontAwesomeIcon icon={faUser} />
               <span>Profile</span>
             </Link>
-            <button
-              className="flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-700"
+            <div
+              className="flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-700 cursor-pointer"
               onClick={logout}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <span>Logout</span>
-            </button>
+            </div>
           </div>
         )}
       </div>

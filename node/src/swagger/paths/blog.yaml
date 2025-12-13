@@ -1,0 +1,249 @@
+paths:
+  /api/blogs:
+    get:
+      tags:
+        - Blogs
+      summary: Lấy danh sách blog
+      description: Lấy tất cả bài blog, sắp xếp theo ngày tạo giảm dần
+      responses:
+        "200":
+          description: Danh sách blog
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlogResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+    post:
+      tags:
+        - Blogs
+      summary: Thêm bài blog mới
+      description: Tạo bài blog mới với tiêu đề, nội dung, tác giả và ảnh thumbnail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - content
+                - author
+              properties:
+                title:
+                  type: string
+                  example: 10 loại rau củ tốt cho sức khỏe
+                content:
+                  type: string
+                  example: Rau xanh chứa nhiều vitamin và khoáng chất...
+                author:
+                  type: string
+                  example: Nguyen Van A
+                thumbnailUrl:
+                  type: string
+                  example: https://example.com/thumbnail.jpg
+      responses:
+        "200":
+          description: Tạo blog thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlogResponse"
+        "400":
+          description: Lỗi đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Thiếu tiêu đề hoặc nội dung
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+  /api/blogs/{id}:
+    get:
+      tags:
+        - Blogs
+      summary: Lấy chi tiết blog theo ID
+      description: Trả về thông tin chi tiết của một bài blog
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của bài blog
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Thông tin blog
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlogResponse"
+        "404":
+          description: Không tìm thấy bài viết
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Không tìm thấy bài viết
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+    put:
+      tags:
+        - Blogs
+      summary: Cập nhật bài blog
+      description: Cập nhật tiêu đề, nội dung, tác giả và ảnh thumbnail của bài blog
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của bài blog cần cập nhật
+          example: 507f1f77bcf86cd799439011
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 10 loại rau củ tốt cho sức khỏe (cập nhật)
+                content:
+                  type: string
+                  example: Rau xanh chứa nhiều vitamin và khoáng chất cần thiết cho cơ thể...
+                author:
+                  type: string
+                  example: Nguyen Van A
+                thumbnailUrl:
+                  type: string
+                  example: https://example.com/thumbnail-updated.jpg
+      responses:
+        "200":
+          description: Cập nhật thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlogResponse"
+        "400":
+          description: Lỗi đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Thiếu thông tin cập nhật
+        "404":
+          description: Không tìm thấy bài viết
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Không tìm thấy bài viết
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+    delete:
+      tags:
+        - Blogs
+      summary: Xóa bài blog
+      description: Xóa vĩnh viễn một bài blog khỏi hệ thống
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của bài blog cần xóa
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Xóa thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        "400":
+          description: Lỗi khi xóa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Không thể xóa bài viết
+        "404":
+          description: Không tìm thấy bài viết
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Không tìm thấy bài viết
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error

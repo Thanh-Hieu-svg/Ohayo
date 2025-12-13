@@ -122,7 +122,7 @@ export const ReviewOrder = () => {
         paymentMethod,
         subtotal,
         status: "waiting_payment",
-        orderDesc: "Thanh toán đơn hàng Ohayo",
+        orderDesc: "Thanh toán đơn hàng GreenNest",
         amount: grandTotal,
       };
 
@@ -143,7 +143,7 @@ export const ReviewOrder = () => {
         {
           orderId,
           amount: grandTotal,
-          orderDesc: "Thanh toán đơn hàng Ohayo",
+          orderDesc: "Thanh toán đơn hàng GreenNest",
         },
         {
           headers: { Authorization: "Bearer " + token },
@@ -180,7 +180,7 @@ export const ReviewOrder = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen mt-10">
+    <div className="bg-white min-h-screen">
       <div className="max-w-7xl mx-auto py-10 px-4 flex flex-col lg:flex-row gap-8">
         <div className="flex-1">
           <h1 className="text-4xl font-semibold mb-8">Xem lại đơn hàng</h1>

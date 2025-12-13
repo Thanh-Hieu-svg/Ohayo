@@ -1,0 +1,73 @@
+components:
+  schemas:
+    CreateQRRequest:
+      type: object
+      required:
+        - orderId
+        - amount
+        - orderDesc
+      properties:
+        orderId:
+          type: string
+          description: ID của đơn hàng cần thanh toán
+          example: 507f1f77bcf86cd799439011
+        amount:
+          type: number
+          description: Số tiền thanh toán (VNĐ)
+          example: 50000
+        orderDesc:
+          type: string
+          description: Mô tả đơn hàng
+          example: Thanh toán đơn hàng #507f1f77bcf86cd799439011
+
+    CreateQRResponse:
+      type: object
+      properties:
+        paymentUrl:
+          type: string
+          description: URL thanh toán VNPay (redirect khách hàng đến đây)
+          example: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=5000000&vnp_Command=pay&...
+
+    VNPayCallback:
+      type: object
+      properties:
+        vnp_ResponseCode:
+          type: string
+          description: Mã phản hồi (00 = thành công)
+          example: "00"
+        vnp_TxnRef:
+          type: string
+          description: ID đơn hàng
+          example: 507f1f77bcf86cd799439011
+        vnp_Amount:
+          type: string
+          description: Số tiền (VNĐ x 100)
+          example: "5000000"
+        vnp_BankCode:
+          type: string
+          description: Mã ngân hàng
+          example: NCB
+        vnp_BankTranNo:
+          type: string
+          description: Mã giao dịch ngân hàng
+          example: VNP01234567
+        vnp_CardType:
+          type: string
+          description: Loại thẻ
+          example: ATM
+        vnp_OrderInfo:
+          type: string
+          description: Thông tin đơn hàng
+          example: Thanh toán đơn hàng #507f1f77bcf86cd799439011
+        vnp_PayDate:
+          type: string
+          description: Thời gian thanh toán (yyyyMMddHHmmss)
+          example: "20250115103045"
+        vnp_TransactionNo:
+          type: string
+          description: Mã giao dịch VNPay
+          example: "14623456"
+        vnp_SecureHash:
+          type: string
+          description: Chữ ký bảo mật SHA512
+          example: abc123def456...

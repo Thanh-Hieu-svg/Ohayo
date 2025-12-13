@@ -1,0 +1,68 @@
+components:
+  schemas:
+    ChatbotTextResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Câu trả lời văn bản từ chatbot
+          example: "Siêu Thị Xanh có rau cải xanh, rau muống, xà lách tươi ngon hôm nay."
+
+    ChatbotProductsResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [products]
+          example: products
+        text:
+          type: string
+          description: Mô tả kết quả
+          example: "Siêu Thị Xanh có các sản phẩm phù hợp:"
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: "507f1f77bcf86cd799439011"
+              name:
+                type: string
+                example: "Rau cải xanh hữu cơ"
+              sku:
+                type: string
+                example: "RAU-001"
+              category:
+                type: string
+                example: "507f1f77bcf86cd799439012"
+              price:
+                type: number
+                example: 25000
+              stock:
+                type: integer
+                example: 100
+              status:
+                type: string
+                enum: [instock, outofstock, discontinued]
+                example: "instock"
+              description:
+                type: string
+                example: "Rau cải xanh trồng hữu cơ, không thuốc trừ sâu"
+              images:
+                type: array
+                items:
+                  type: string
+                example: ["/uploads/1234567890-image1.jpg"]
+
+    ChatbotRequest:
+      type: object
+      required:
+        - messages
+      properties:
+        messages:
+          type: array
+          items:
+            type: string
+          description: Danh sách tin nhắn từ người dùng
+          example: ["Có rau gì tươi hôm nay?", "Giá bao nhiêu?"]

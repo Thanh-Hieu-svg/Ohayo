@@ -20,4 +20,4 @@ export const DATADASHBOARD_URL = "http://localhost:5000/api/dashboard/summary";
 
 export const DATACATEGORY_URL = "http://localhost:5000/api/dashboard/category-percent";
 
-    export const CHATBOT_URL = "http://localhost:5000/api/chatbot";
+export const CHATBOT_URL = "http://localhost:5000/api/chatbot";

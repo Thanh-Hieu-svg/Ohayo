@@ -1,0 +1,57 @@
+paths:
+  /api/chatbot:
+    post:
+      tags:
+        - Chatbot
+      summary: Gửi tin nhắn tới chatbot
+      description: |
+        Chatbot hỗ trợ:
+        - Tìm kiếm sản phẩm theo từ khóa
+        - Trả lời câu hỏi về đơn hàng, giao hàng, thanh toán
+        - Tư vấn công thức nấu ăn, dinh dưỡng, bảo quản
+        - Gợi ý món ăn, khuyến mãi
+        - Hỗ trợ thông tin liên hệ, chính sách
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - messages
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: string
+                  description: Danh sách tin nhắn từ người dùng
+                  example: ["Có rau gì tươi hôm nay?"]
+      responses:
+        "200":
+          description: Phản hồi từ chatbot
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/ChatbotTextResponse"
+                  - $ref: "#/components/schemas/ChatbotProductsResponse"
+        "400":
+          description: Thiếu thông tin hoặc sai định dạng
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "messages phải là một mảng và không được rỗng."
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Lỗi truy vấn sản phẩm"

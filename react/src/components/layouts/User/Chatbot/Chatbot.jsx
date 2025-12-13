@@ -16,7 +16,7 @@ export const ChatBot = ({ onClose }) => {
       setMessages([
         {
           role: "bot",
-          text: "Xin chào Anh/Chị! Em là trợ lý AI của Ohayo",
+          text: "Xin chào Anh/Chị! Em là trợ lý AI của GreenNest",
         },
       ]);
     }, 500);
@@ -54,10 +54,7 @@ export const ChatBot = ({ onClose }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post(CHATBOT_URL, {
-        messages: [input],
-      });
-
+      const res = await axios.post(CHATBOT_URL, { messages: [input] });
       const data = res.data;
 
       if (data.type === "products" && Array.isArray(data.products)) {
@@ -66,21 +63,31 @@ export const ChatBot = ({ onClose }) => {
           { role: "bot", text: data.text, products: data.products },
         ]);
       } else {
-        setMessages((prev) => [...prev, { role: "bot", text: data.text }]);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            text:
+              data.text ||
+              "Hệ thống AI tạm thời không khả dụng. Bạn có thể hỏi về: sản phẩm, đơn hàng, công thức nấu với nguyên liệu cụ thể.",
+          },
+        ]);
       }
     } catch (e) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "bot",
-          text:
-            e?.response?.data?.error || e.message || "Lỗi khi gọi Gemini API.",
-        },
-      ]);
-    }
+      const status = e?.response?.status;
+      const msg =
+        e?.response?.data?.error || e?.response?.data?.text || e.message;
 
-    setInput("");
-    setLoading(false);
+      const friendly =
+        status === 403
+          ? "API key AI bị khóa hoặc rò rỉ. Tạm thời trợ lý AI không hoạt động, bạn có thể tìm sản phẩm theo từ khóa."
+          : "Hệ thống AI tạm thời không khả dụng. Vui lòng thử lại sau.";
+
+      setMessages((prev) => [...prev, { role: "bot", text: msg || friendly }]);
+    } finally {
+      setInput("");
+      setLoading(false);
+    }
   };
 
   const filterName = getLastUserKeyword();
@@ -88,7 +95,7 @@ export const ChatBot = ({ onClose }) => {
   return (
     <div className="fixed bottom-20 right-4 w-full max-w-[420px] bg-white rounded-2xl shadow-xl p-0 flex flex-col h-[600px] border border-green-400 z-50">
       <div className="text-center py-4 bg-gradient-to-r from-green-600 to-green-400 text-white text-xl font-bold rounded-t-2xl shadow-lg flex items-center justify-between px-4">
-        <div className="flex items-center gap-2 ">Ohayo</div>
+        <div className="flex items-center gap-2 ">GreenNest</div>
         <button
           onClick={onClose}
           className="text-white text-xl font-bold hover:text-green-100 transition-colors"

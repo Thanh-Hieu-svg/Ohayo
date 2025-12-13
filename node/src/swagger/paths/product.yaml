@@ -1,0 +1,293 @@
+paths:
+  /api/products:
+    get:
+      tags:
+        - Products
+      summary: Lấy danh sách sản phẩm
+      description: Lấy tất cả sản phẩm, hỗ trợ tìm kiếm theo tên/mô tả và lọc theo danh mục
+      parameters:
+        - in: query
+          name: search
+          schema:
+            type: string
+          description: Tìm kiếm theo tên hoặc mô tả sản phẩm
+          example: Rau
+        - in: query
+          name: category
+          schema:
+            type: string
+          description: Lọc theo ID danh mục
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Danh sách sản phẩm
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi lấy danh sách sản phẩm
+
+    post:
+      tags:
+        - Products
+      summary: Thêm sản phẩm mới
+      description: Tạo sản phẩm mới với thông tin và upload ảnh (multipart/form-data)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - sku
+                - category
+                - price
+              properties:
+                name:
+                  type: string
+                  example: Rau cải xanh hữu cơ
+                sku:
+                  type: string
+                  example: RAU-001
+                category:
+                  type: string
+                  example: 507f1f77bcf86cd799439011
+                price:
+                  type: number
+                  example: 25000
+                stock:
+                  type: integer
+                  default: 0
+                  example: 100
+                status:
+                  type: string
+                  enum: [instock, outofstock, discontinued]
+                  default: instock
+                  example: instock
+                description:
+                  type: string
+                  example: Rau cải xanh trồng hữu cơ, không thuốc trừ sâu
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Tải lên nhiều ảnh sản phẩm
+      responses:
+        "201":
+          description: Tạo sản phẩm thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductResponse"
+        "400":
+          description: Lỗi đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: SKU đã tồn tại
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi thêm sản phẩm
+
+  /api/products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Lấy thông tin sản phẩm theo ID
+      description: Trả về chi tiết một sản phẩm bao gồm thông tin danh mục
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của sản phẩm
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Thông tin sản phẩm
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductResponse"
+        "404":
+          description: Không tìm thấy sản phẩm
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy sản phẩm
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi lấy sản phẩm
+
+    patch:
+      tags:
+        - Products
+      summary: Cập nhật sản phẩm
+      description: Cập nhật thông tin sản phẩm, giữ lại ảnh cũ và thêm ảnh mới
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của sản phẩm cần cập nhật
+          example: 507f1f77bcf86cd799439011
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Rau cải xanh hữu cơ (cập nhật)
+                sku:
+                  type: string
+                  example: RAU-001
+                category:
+                  type: string
+                  example: 507f1f77bcf86cd799439011
+                price:
+                  type: number
+                  example: 30000
+                stock:
+                  type: integer
+                  example: 150
+                status:
+                  type: string
+                  enum: [instock, outofstock, discontinued]
+                  example: instock
+                description:
+                  type: string
+                  example: Rau cải xanh trồng hữu cơ, không thuốc trừ sâu (mô tả mới)
+                oldImages:
+                  type: array
+                  items:
+                    type: string
+                  description: Danh sách đường dẫn ảnh cũ muốn giữ lại
+                  example: ["/uploads/1234567890-image1.jpg"]
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Tải lên ảnh mới
+      responses:
+        "200":
+          description: Cập nhật thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductResponse"
+        "404":
+          description: Không tìm thấy sản phẩm
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy sản phẩm
+        "400":
+          description: Lỗi đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: SKU đã tồn tại
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi cập nhật sản phẩm
+
+    delete:
+      tags:
+        - Products
+      summary: Xóa sản phẩm
+      description: Xóa vĩnh viễn một sản phẩm khỏi hệ thống
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của sản phẩm cần xóa
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Xóa thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Xóa sản phẩm thành công
+        "404":
+          description: Không tìm thấy sản phẩm
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy sản phẩm
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi xóa sản phẩm

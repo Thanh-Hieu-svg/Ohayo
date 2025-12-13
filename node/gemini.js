@@ -8,7 +8,7 @@ async function testGemini() {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   try {
-    const result = await model.generateContent("Trà được làm từ gì?");
+    const result = await model.generateContent("GreenNest được làm từ gì?");
     const text = result.response.text();
     console.log(text);
   } catch (e) {

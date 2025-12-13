@@ -1,10 +1,10 @@
 import React from "react";
-import img1 from "../../assets/images/AboutUs/about-1.jpg";
-import img2 from "../../assets/images/AboutUs/about-2.jpg";
-import img3 from "../../assets/images/AboutUs/about-3.jpg";
-import img4 from "../../assets/images/AboutUs/about-4.jpg";
-import img5 from "../../assets/images/AboutUs/about-5.jpg";
-import img6 from "../../assets/images/AboutUs/about-6.jpg";
+import img1 from "../../assets/bi-quyet-chon-thuc-pham-sach_1.jpg";
+import img2 from "../../assets/cua-hang-thuc-pham-sach_e28346a694eb4e91adf852a08af96693.jpg";
+import img3 from "../../assets/images1059758_1_trang_3.gif";
+import img4 from "../../assets/lam-cach-nao-de-giam-can-hieu-qua.jpg";
+import img5 from "../../assets/thuc_pham_1.png";
+import img6 from "../../assets/thuc_pham_sach_va_nhung_dieu_can_phai_biet_2a841ed292.webp";
 
 export const AboutUs = () => {
   return (
@@ -15,24 +15,24 @@ export const AboutUs = () => {
           <div className="flex flex-col gap-4">
             <img
               src={img1}
-              alt="Trà tươi"
+              alt="Rau tươi"
               className="object-cover shadow-lg w-full h-full"
             />
             <img
               src={img2}
-              alt="Người thưởng trà"
+              alt="Khách hàng mua sắm"
               className="object-cover shadow-lg max-w-[150px] max-h-[186px] self-end"
             />
           </div>
           <div className="flex flex-col gap-4">
             <img
               src={img4}
-              alt="Lá trà"
+              alt="Sản phẩm hữu cơ"
               className="object-cover shadow-lg max-w-[150px] max-h-[186px]"
             />
             <img
               src={img3}
-              alt="Nguyên liệu trà"
+              alt="Nông sản sạch"
               className="object-cover shadow-lg w-full h-full"
             />
           </div>
@@ -44,7 +44,7 @@ export const AboutUs = () => {
             Về Chúng Tôi
           </p>
           <h3 className="text-3xl md:text-4xl font-bold leading-snug mb-6">
-            Hành trình thành công của Ohayo trong 25 năm
+            Hành trình phát triển Siêu Thị Xanh trong 25 năm
           </h3>
 
           <div className="flex items-center gap-4 mb-8">
@@ -62,13 +62,12 @@ export const AboutUs = () => {
             />
             <div>
               <h4 className="text-xl font-semibold mb-2">
-                Trà của chúng tôi là một trong những thức uống phổ biến nhất thế
-                giới
+                Sản phẩm của chúng tôi luôn tươi ngon và an toàn
               </h4>
               <p className="text-base text-gray-600">
-                Trải qua nhiều năm phát triển, chúng tôi mang đến những sản phẩm
-                trà tinh khiết, được chọn lọc kỹ càng từ những lá trà chất lượng
-                cao.
+                Siêu Thị Xanh cam kết mang đến những sản phẩm hữu cơ, được chọn
+                lọc kỹ càng từ các nông trại đạt chuẩn, đảm bảo sức khỏe cho
+                người tiêu dùng.
               </p>
             </div>
           </div>
@@ -77,16 +76,17 @@ export const AboutUs = () => {
           <div className="flex items-start gap-5 border-t pt-6">
             <div className="flex-1">
               <h4 className="text-xl font-semibold mb-2">
-                Uống một tách trà mỗi ngày giúp cơ thể khỏe mạnh
+                Sống xanh mỗi ngày cùng Siêu Thị Xanh
               </h4>
               <p className="text-base text-gray-600">
-                Trà xanh chứa nhiều chất chống oxy hóa, giúp tăng cường sức
-                khỏe, giảm căng thẳng và mang lại sự thư giãn cho tinh thần.
+                Chúng tôi khuyến khích lối sống xanh, sử dụng các sản phẩm thân
+                thiện với môi trường, góp phần bảo vệ hành tinh và sức khỏe của
+                bạn.
               </p>
             </div>
             <img
               src={img6}
-              alt="Thưởng trà"
+              alt="Mua sắm xanh"
               className="w-28 h-28 rounded-lg object-cover shadow-md"
             />
           </div>

@@ -1,0 +1,235 @@
+paths:
+  /api/categories:
+    get:
+      tags:
+        - Categories
+      summary: Lấy danh sách danh mục
+      description: Lấy tất cả danh mục, sắp xếp theo ngày tạo giảm dần
+      responses:
+        "200":
+          description: Danh sách danh mục
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CategoryResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi lấy danh mục
+
+    post:
+      tags:
+        - Categories
+      summary: Thêm danh mục mới
+      description: Tạo danh mục mới với tên và mô tả
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  example: Rau củ quả
+                description:
+                  type: string
+                  example: Các loại rau củ quả tươi ngon
+      responses:
+        "201":
+          description: Tạo danh mục thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CategoryResponse"
+        "400":
+          description: Tên danh mục đã tồn tại hoặc thiếu thông tin
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tên danh mục đã tồn tại
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi tạo danh mục
+
+  /api/categories/{id}:
+    get:
+      tags:
+        - Categories
+      summary: Lấy thông tin danh mục theo ID
+      description: Trả về chi tiết một danh mục
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của danh mục
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Thông tin danh mục
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CategoryResponse"
+        "404":
+          description: Không tìm thấy danh mục
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy danh mục
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi lấy danh mục
+
+    put:
+      tags:
+        - Categories
+      summary: Cập nhật danh mục
+      description: Cập nhật tên và mô tả của danh mục
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của danh mục cần cập nhật
+          example: 507f1f77bcf86cd799439011
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Rau củ quả (cập nhật)
+                description:
+                  type: string
+                  example: Các loại rau củ quả tươi ngon hữu cơ
+      responses:
+        "200":
+          description: Cập nhật thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CategoryResponse"
+        "404":
+          description: Không tìm thấy danh mục
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy danh mục
+        "400":
+          description: Tên danh mục đã tồn tại
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tên danh mục đã tồn tại
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi cập nhật danh mục
+
+    delete:
+      tags:
+        - Categories
+      summary: Xóa danh mục
+      description: Xóa danh mục (chỉ khi không còn sản phẩm nào thuộc danh mục này)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của danh mục cần xóa
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Xóa thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Xóa danh mục thành công
+        "400":
+          description: Không thể xóa do còn sản phẩm hoặc ID không hợp lệ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Không thể xóa! Có 5 sản phẩm đang thuộc danh mục này.
+        "404":
+          description: Không tìm thấy danh mục
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy danh mục
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi server khi xóa danh mục

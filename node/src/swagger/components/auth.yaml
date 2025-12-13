@@ -1,0 +1,97 @@
+components:
+  schemas:
+    RegisterRequest:
+      type: object
+      required:
+        - username
+        - email
+        - password
+        - confirmPassword
+      properties:
+        username:
+          type: string
+          example: Nguyen Van A
+        email:
+          type: string
+          format: email
+          example: nguyenvana@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+        confirmPassword:
+          type: string
+          format: password
+          example: password123
+
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: nguyenvana@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+
+    LoginResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Đăng nhập thành công!
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        user:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 507f1f77bcf86cd799439011
+            email:
+              type: string
+              example: nguyenvana@example.com
+            username:
+              type: string
+              example: Nguyen Van A
+            role:
+              type: string
+              example: user
+
+    ForgotPasswordRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          example: nguyenvana@example.com
+
+    ResetPasswordRequest:
+      type: object
+      required:
+        - password
+        - confirmPassword
+      properties:
+        password:
+          type: string
+          format: password
+          example: newPassword123
+        confirmPassword:
+          type: string
+          format: password
+          example: newPassword123
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token nhận được sau khi đăng nhập

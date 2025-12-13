@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/uploads', express.static(uploadPath));
 
+
 // router
 const authRoutes = require("./src/routes/auth");
 const categoryRoutes = require("./src/routes/category");
@@ -29,6 +30,8 @@ const vnpayRoutes = require("./src/routes/vnpay");
 const contactRoutes = require("./src/routes/contact");
 const dashboardRoutes = require("./src/routes/dashboard");
 const chatbotRoutes = require("./src/routes/chatbot");
+const swaggerDocs = require("./src/swagger/swagger");
+swaggerDocs(app);
 
 app.use('/api/auth', authRoutes);        
 app.use('/api/categories', categoryRoutes); 
@@ -46,8 +49,11 @@ console.log('MongoDB URI:', MongoDB);
 mongoose.connect(MongoDB)
   .then(() => {
     const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`✅ Server đang chạy: http://localhost:${PORT}`));
+    app.listen(PORT, () => {
+      console.log(`✅ Server đang chạy: http://localhost:${PORT}`);
+      console.log(`📄 Swagger API Docs: http://localhost:${PORT}/api-docs`);
+    });
   })
   .catch(err => {
-    console.error('MongoDB connection error:', err);
+    console.error('❌ MongoDB connection error:', err);
   });

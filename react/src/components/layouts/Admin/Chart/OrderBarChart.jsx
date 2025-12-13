@@ -84,7 +84,7 @@ export const OrderBarChart = () => {
       legend: { position: "top" },
       title: {
         display: true,
-        text: "Biểu đồ doanh số sản phẩm trong tháng",
+        text: "",
         font: { size: 20 },
         align: "start",
         color: "#191919",

@@ -1,0 +1,28 @@
+paths:
+  /api/admin/dashboard:
+    get:
+      tags:
+        - Admin
+      summary: Truy cập Dashboard Admin
+      description: Endpoint dành riêng cho admin, yêu cầu token JWT và role admin
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Truy cập thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminDashboardResponse"
+        "401":
+          description: Chưa đăng nhập hoặc token không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          description: Không có quyền truy cập
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/ForbiddenError"

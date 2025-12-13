@@ -1,0 +1,46 @@
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT token nhận được sau khi đăng nhập. Format: `Bearer {token}`
+
+        Để test trên Swagger:
+        1. Đăng nhập qua endpoint `/api/auth/login`
+        2. Copy token từ response
+        3. Nhấn nút "Authorize" ở đầu trang
+        4. Nhập: `Bearer {token}` (có khoảng trắng giữa Bearer và token)
+        5. Nhấn "Authorize"
+
+  responses:
+    UnauthorizedError:
+      description: Token không hợp lệ hoặc chưa đăng nhập
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Bạn chưa đăng nhập."
+
+    ForbiddenError:
+      description: Không có quyền truy cập (chỉ dành cho admin)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Access denied: Admins only."
+
+  schemas:
+    AdminDashboardResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Chào mừng Admin!"

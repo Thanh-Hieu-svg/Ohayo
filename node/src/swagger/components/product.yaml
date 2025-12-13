@@ -1,0 +1,84 @@
+components:
+  schemas:
+    ProductResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        name:
+          type: string
+          example: Rau cải xanh hữu cơ
+        sku:
+          type: string
+          example: RAU-001
+        category:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 507f1f77bcf86cd799439012
+            name:
+              type: string
+              example: Rau củ quả
+        price:
+          type: number
+          example: 25000
+        stock:
+          type: integer
+          example: 100
+        status:
+          type: string
+          enum: [instock, outofstock, discontinued]
+          example: instock
+        description:
+          type: string
+          example: Rau cải xanh trồng hữu cơ, không thuốc trừ sâu
+        images:
+          type: array
+          items:
+            type: string
+          example:
+            ["/uploads/1234567890-image1.jpg", "/uploads/1234567891-image2.jpg"]
+        createdAt:
+          type: string
+          format: date-time
+          example: 2025-01-10T10:30:00.000Z
+
+    Product:
+      type: object
+      required:
+        - name
+        - sku
+        - category
+        - price
+      properties:
+        name:
+          type: string
+          example: Rau cải xanh hữu cơ
+        sku:
+          type: string
+          example: RAU-001
+        category:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        price:
+          type: number
+          example: 25000
+        stock:
+          type: integer
+          default: 0
+          example: 100
+        status:
+          type: string
+          enum: [instock, outofstock, discontinued]
+          default: instock
+          example: instock
+        description:
+          type: string
+          example: Rau cải xanh trồng hữu cơ, không thuốc trừ sâu
+        images:
+          type: array
+          items:
+            type: string
+          example: ["/uploads/1234567890-image1.jpg"]

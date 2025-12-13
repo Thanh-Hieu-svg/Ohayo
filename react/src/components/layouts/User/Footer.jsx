@@ -59,7 +59,7 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-2">
               <li className="hover:text-white cursor-pointer group transition-all duration-300 ease-in-out hover:scale-105">
-                <Link to="/about-us">
+                <Link to="/about">
                   <i className="fas fa-angle-right mr-2 text-lime-400 group-hover:text-white transition-colors duration-300"></i>
                   Giới thiệu
                 </Link>
@@ -124,13 +124,13 @@ export const Footer = () => {
         <div className="border-t border-gray-700 mt-10 pt-6 text-sm text-gray-400 flex flex-col sm:flex-row justify-between items-center">
           <p>
             © {new Date().getFullYear()}
-            <span className="text-lime-400 font-medium"> Ohayo </span>, mọi
+            <span className="text-lime-400 font-medium"> GreenNest </span>, mọi
             quyền được bảo lưu.
           </p>
           <p className="mt-2 sm:mt-0">
             Thiết kế bởi
             <span className="text-lime-400 font-medium"> 5D's</span>, phân phối
-            bởi <span className="text-lime-400 font-medium">Ohayo</span>
+            bởi <span className="text-lime-400 font-medium">GreenNest</span>
           </p>
         </div>
       </div>

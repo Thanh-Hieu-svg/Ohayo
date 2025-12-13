@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Banner1 from "../../assets/images/Banner/carousel-1.jpg";
-import Banner2 from "../../assets/images/Banner/carousel-2.jpg";
+import Banner1 from "../../assets/images/Banner/banner-01.jpg";
+import Banner2 from "../../assets/images/Banner/banner-02.jpg";
+import Banner3 from "../../assets/images/Banner/banner-03.jpg";
 import { ChevronLeft } from "../icons/ChevronLeft";
 import { ChevronRight } from "../icons/ChevronRight";
 
@@ -40,14 +41,15 @@ const slides = [
     image: Banner1,
     title: (
       <>
-        Trà Hữu Cơ <br /> Tươi Ngon Từ Thiên Nhiên
+        Thực Phẩm Sạch
+        <br />
+        Tươi mỗi ngày – An toàn cho gia đình.
       </>
     ),
     subtitle: (
       <>
-        Khám phá hương vị{" "}
-        <span className="text-[#252c30] font-semibold">
-          trà xanh nguyên chất
+        <span className="text-white font-semibold">
+          Từ nông trại đến gia đình
         </span>
       </>
     ),
@@ -57,13 +59,34 @@ const slides = [
     image: Banner2,
     title: (
       <>
-        Nghệ Thuật <br /> Pha Trà Tinh Tế
+        Giao Nhanh 30 Phút
+        <br />
+        Đặt online – Giao tận nhà.
       </>
     ),
     subtitle: (
       <>
-        Trải nghiệm cùng{" "}
-        <span className="text-[#252c30] font-semibold">Trà Thảo Mộc</span>
+        <span className="text-white font-semibold">
+          Đi chợ online siêu tiện
+        </span>
+      </>
+    ),
+    buttonText: "Tìm Hiểu Thêm",
+  },
+  {
+    image: Banner3,
+    title: (
+      <>
+        Giá Sốc Mỗi Ngày
+        <br />
+        Giảm đến 50% – Mua là rẻ!
+      </>
+    ),
+    subtitle: (
+      <>
+        <span className="text-white font-semibold">
+          Hàng mới – giá tốt – số lượng có hạn
+        </span>
       </>
     ),
     buttonText: "Tìm Hiểu Thêm",
@@ -101,8 +124,9 @@ export const Banner = () => {
               />
               <div
                 className="absolute inset-0"
-                style={{ background: "rgba(136,180,78,0.7)", zIndex: 10 }}
+                style={{ background: "rgba(0, 0, 0, 0.25)", zIndex: 10 }}
               ></div>
+
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-20">
                 <p
                   className={`text-white text-lg md:text-xl font-light mb-2 transition-all duration-700 ${
@@ -112,7 +136,7 @@ export const Banner = () => {
                   {slide.subtitle}
                 </p>
                 <h2
-                  className={`font-playfair text-[#252c30] text-4xl md:text-6xl font-bold mb-8 drop-shadow-md transition-all duration-700 ${
+                  className={`font-playfair text-white text-4xl md:text-6xl font-bold mb-8 drop-shadow-md transition-all duration-700 ${
                     activeSlide === idx ? "bloom-effect" : "opacity-0"
                   }`}
                 >

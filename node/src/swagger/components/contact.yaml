@@ -1,0 +1,64 @@
+components:
+  schemas:
+    ContactResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        name:
+          type: string
+          example: Nguyen Van A
+        email:
+          type: string
+          format: email
+          example: nguyenvana@example.com
+        phone:
+          type: string
+          example: 0912345678
+        subject:
+          type: string
+          example: Hỏi về sản phẩm
+        message:
+          type: string
+          example: Tôi muốn biết thêm thông tin về rau hữu cơ
+        sentAt:
+          type: string
+          format: date-time
+          example: 2025-01-10T10:30:00.000Z
+        isRead:
+          type: boolean
+          default: false
+          example: false
+
+    Contact:
+      type: object
+      required:
+        - name
+        - email
+        - message
+      properties:
+        name:
+          type: string
+          example: Nguyen Van A
+        email:
+          type: string
+          format: email
+          example: nguyenvana@example.com
+        phone:
+          type: string
+          example: 0912345678
+        subject:
+          type: string
+          example: Hỏi về sản phẩm
+        message:
+          type: string
+          example: Tôi muốn biết thêm thông tin về rau hữu cơ
+        sentAt:
+          type: string
+          format: date-time
+          description: Thời gian gửi (tự động)
+        isRead:
+          type: boolean
+          default: false
+          description: Trạng thái đã đọc

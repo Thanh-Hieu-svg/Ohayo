@@ -2,64 +2,176 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const fs = require('fs');
+const path = require('path');
 
-const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-async function callGemini(question) {
-    try {
-      const model = gemini.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const result = await model.generateContent(question);
-      const text = result.response.text();
-      return { text };
-    } catch (e) {
-      console.error("Gemini error:", e);
-      return { text: "Xin lỗi, trợ lý AI đang bận. Bạn vui lòng thử lại sau!" };
-    }
-  }
+// Load data.json
+const dataPath = path.join(__dirname, '../data/data.json');
+const chatData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
 const stopWords = [
-  "shop", "còn", "sản", "phẩm", "không", "bán", "có", "bạn", "ở", "đây", "và", "cho",
-  "xin", "hỏi", "tôi", "bạn", "anh", "chị", "em", "là", "một", "của", "với", "hay", "được", "khách", "mua",
+  "siêu", "thị", "xanh", "còn", "sản", "phẩm", "không", "bán", "có", "bạn", "ở", "đây", "và", "cho",
+  "xin", "hỏi", "tôi", "anh", "chị", "em", "là", "một", "của", "với", "hay", "được", "khách", "mua",
   "hiện", "tại", "bây", "giờ", "nữa", "vẫn", "ko", "chưa", "trong", "cửa", "hàng"
 ];
 
-const productKeywords = [
-  /còn.*trà/i, /loại.*trà/i, /trà.*gì/i, /trà.*nào/i, /có.*trà/i, /bán.*trà/i, /menu.*trà/i,
-  /các.*loại.*trà/i, /trà.*trong.*cửa hàng/i, /trà.*hiện tại/i,
-  /còn.*cà phê/i, /còn.*cafe/i, /có.*cà phê/i, /có.*cafe/i, /cà phê.*gì/i, /cafe.*gì/i,
-  /loại.*cà phê/i, /loại.*cafe/i, /bán.*cà phê/i, /bán.*cafe/i, /menu.*cà phê/i, /menu.*cafe/i,
-  /các.*loại.*cà phê/i, /các.*loại.*cafe/i, /cà phê.*trong.*cửa hàng/i, /cafe.*trong.*cửa hàng/i,
-  /cà phê.*hiện tại/i, /cafe.*hiện tại/i,
-];
-
-const knowledgeKeywords = [
-  /cách pha.*trà/i, /cách pha.*cà phê/i, /cách pha.*cafe/i,
-  /công thức.*trà/i, /công thức.*cà phê/i, /công thức.*cafe/i,
-  /pha trà/i, /pha cà phê/i, /pha cafe/i,
-  /hướng dẫn.*pha/i, /cách làm.*trà/i, /cách làm.*cà phê/i, /cách làm.*cafe/i,
-  /trà là gì/i, /cà phê là gì/i, /cafe là gì/i,
-  /trà.*được làm từ/i, /cà phê.*được làm từ/i, /cafe.*được làm từ/i,
-  /nguồn gốc.*trà/i, /nguồn gốc.*cà phê/i, /nguồn gốc.*cafe/i,
-  /lịch sử.*trà/i, /lịch sử.*cà phê/i, /lịch sử.*cafe/i,
-  /trà.*có tác dụng gì/i, /cà phê.*có tác dụng gì/i, /cafe.*có tác dụng gì/i,
-  /trà.*tác hại/i, /cà phê.*tác hại/i, /cafe.*tác hại/i,
-  /tác dụng.*trà/i, /tác dụng.*cà phê/i, /tác dụng.*cafe/i,
-  /trà.*tốt cho sức khỏe/i, /cà phê.*tốt cho sức khỏe/i, /cafe.*tốt cho sức khỏe/i,
-  /trà.*bao nhiêu loại/i, /cà phê.*bao nhiêu loại/i, /cafe.*bao nhiêu loại/i,
-  /sự khác biệt.*trà/i, /sự khác biệt.*cà phê/i, /sự khác biệt.*cafe/i,
-];
-
 const orderKeywords = [
-  "đơn hàng", "mã đơn", "theo dõi đơn", "kiểm tra đơn", "tình trạng đơn", "giao hàng", 
-  "shipping", "tracking", "vận chuyển", "đã nhận được chưa", "chưa nhận được", "đơn của tôi", "đơn em", "delivery", "trạng thái đơn", "mã vận đơn"
+  "đơn hàng", "mã đơn", "theo dõi đơn", "kiểm tra đơn", "tình trạng đơn", "giao hàng",
+  "shipping", "tracking", "vận chuyển", "đơn của tôi", "delivery", "trạng thái đơn", "mã vận đơn"
 ];
 
-function isProductCategoryQuery(query) {
-  return productKeywords.some(re => re.test(query));
+function isOrderQuery(q) {
+  return orderKeywords.some(k => q.includes(k));
 }
-function isKnowledgeQuery(query) {
-  return knowledgeKeywords.some(re => re.test(query));
+
+function findAnswer(q) {
+  // Check greetings
+  if (/^(xin chào|chào|hello|hi|hey)/i.test(q)) {
+    return chatData.greetings[Math.floor(Math.random() * chatData.greetings.length)];
+  }
+
+  // Check smalltalk
+  for (const [key, responses] of Object.entries(chatData.smalltalk)) {
+    if (q.includes(key)) {
+      return Array.isArray(responses) ? responses[Math.floor(Math.random() * responses.length)] : responses;
+    }
+  }
+
+  // Check user_profiles
+  if (chatData.user_profiles) {
+    for (const [key, value] of Object.entries(chatData.user_profiles)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check advanced_recipes
+  if (chatData.advanced_recipes) {
+    for (const [key, value] of Object.entries(chatData.advanced_recipes)) {
+      if (q.includes(key)) {
+        if (typeof value === 'object' && !Array.isArray(value)) {
+          return Object.entries(value).map(([k, v]) => `${k}: ${v}`).join("\n");
+        }
+        return value;
+      }
+    }
+  }
+
+  // Check food_pairing
+  if (chatData.food_pairing) {
+    for (const [key, value] of Object.entries(chatData.food_pairing)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check promotion_campaigns
+  if (chatData.promotion_campaigns) {
+    for (const [key, value] of Object.entries(chatData.promotion_campaigns)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check eco_messages
+  if (chatData.eco_messages) {
+    for (const [key, value] of Object.entries(chatData.eco_messages)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check business_support
+  if (chatData.business_support) {
+    for (const [key, value] of Object.entries(chatData.business_support)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check testimonials
+  if (chatData.testimonials) {
+    for (const [key, value] of Object.entries(chatData.testimonials)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check company
+  if (chatData.company) {
+    for (const [key, value] of Object.entries(chatData.company)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check seasonal
+  for (const [key, value] of Object.entries(chatData.seasonal)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check health_tips
+  for (const [key, value] of Object.entries(chatData.health_tips)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check faq
+  for (const [key, value] of Object.entries(chatData.faq)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check nutrition
+  for (const [key, value] of Object.entries(chatData.nutrition)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check recipes
+  for (const [key, value] of Object.entries(chatData.recipes)) {
+    if (q.includes(key)) {
+      return Array.isArray(value) ? value.join(", ") : value;
+    }
+  }
+
+  // Check ai_suggestions
+  for (const [key, value] of Object.entries(chatData.ai_suggestions)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check knowledge
+  for (const [key, value] of Object.entries(chatData.knowledge)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check products
+  for (const [key, value] of Object.entries(chatData.products)) {
+    if (q.includes(key)) {
+      return Array.isArray(value) ? value.join(", ") : value;
+    }
+  }
+
+  // Check shopping
+  if (chatData.shopping) {
+    for (const [key, value] of Object.entries(chatData.shopping)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check shipping
+  for (const [key, value] of Object.entries(chatData.shipping)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check payment
+  for (const [key, value] of Object.entries(chatData.payment)) {
+    if (q.includes(key)) return value;
+  }
+
+  // Check support
+  if (chatData.support) {
+    for (const [key, value] of Object.entries(chatData.support)) {
+      if (q.includes(key)) return value;
+    }
+  }
+
+  // Check contact
+  for (const [key, value] of Object.entries(chatData.contact)) {
+    if (q.includes(key)) return value;
+  }
+
+  return null;
 }
 
 router.post('/', async (req, res) => {
@@ -68,85 +180,43 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: "messages phải là một mảng và không được rỗng." });
   }
 
-  const userQuery = messages.join(" ").toLowerCase();
-  const originUserQuery = messages.join(" ");
+  const origin = messages.join(" ");
+  const q = origin.toLowerCase();
 
-  // 1. Kiểm tra liên quan đơn hàng
-  const isOrderRelated = orderKeywords.some(keyword => userQuery.includes(keyword));
-  if (isOrderRelated) {
+  // 1) Đơn hàng
+  if (isOrderQuery(q)) {
     return res.json({
-      text: "Dạ, Anh/Chị vui lòng liên hệ hotline 0123456789 để được hỗ trợ kiểm tra đơn hàng trà/cafe của mình nhé ạ!"
+      text: "Bạn vui lòng liên hệ hotline 0123456789 hoặc kiểm tra mục Đơn hàng trên website để xem tình trạng."
     });
   }
 
-  // 2. Kiến thức về trà/cafe (công thức, định nghĩa, nguồn gốc, cách pha,...)
-  if (isKnowledgeQuery(userQuery)) {
-    const geminiRes = await callGemini(originUserQuery);
-    return res.json(geminiRes);
-  }
-
-  // 3. Nếu hỏi về loại trà/cafe, trả về tất cả sản phẩm thuộc nhóm đó
-  if (isProductCategoryQuery(userQuery)) {
-    let filter = {};
-    if (/trà/i.test(userQuery) && !/cà\s?phê|cafe/i.test(userQuery)) {
-      filter = { name: /trà/i };
-    } else if (/cà\s?phê|cafe/i.test(userQuery) && !/trà/i.test(userQuery)) {
-      filter = { name: /cà\s?phê|cafe/i };
-    } else {
-      filter = {};
-    }
-
-    try {
-      const products = await Product.find(filter);
+  // 2) Tìm sản phẩm
+  const keywords = q.split(/\s+/).filter(w => !stopWords.includes(w) && w.length > 1);
+  try {
+    if (keywords.length > 0) {
+      const products = await Product.find({
+        $or: keywords.map(k => ({ name: { $regex: k, $options: "i" } }))
+      });
       if (products.length > 0) {
         return res.json({
           type: "products",
-          text: "Dạ, shop có các sản phẩm trà và cafe như sau:",
+          text: "Siêu Thị Xanh có các sản phẩm phù hợp:",
           products
         });
-      } else {
-        return res.json({
-          text: "Hiện shop chưa có sản phẩm phù hợp với yêu cầu này."
-        });
       }
-    } catch (err) {
-      return res.status(500).json({ error: "Lỗi truy vấn sản phẩm" });
     }
-  }
-
-  // 4. Tìm sản phẩm theo từ khóa còn lại (lọc stopwords)
-  const keywords = userQuery
-    .split(/\s+/)
-    .filter(word =>
-      !stopWords.includes(word) &&
-      word.length > 1 &&
-      !["trà", "cafe", "cà", "phê"].includes(word)
-    );
-
-  let products = [];
-  try {
-    if (keywords.length > 0) {
-      products = await Product.find({
-        $or: keywords.map(k => ({
-          name: { $regex: k, $options: "i" }
-        }))
-      });
-    }
-    if (products.length > 0) {
-      return res.json({
-        type: "products",
-        text: "Dạ, shop có các sản phẩm như sau:",
-        products
-      });
-    }
-  } catch (err) {
+  } catch {
     return res.status(500).json({ error: "Lỗi truy vấn sản phẩm" });
   }
 
-  // 5. Nếu không tìm thấy
-  return res.json({
-    text: `Dạ, em chưa tìm thấy thông tin về "${originUserQuery}". Shop chuyên các loại trà và cafe thơm ngon, nguyên chất. Anh/Chị muốn tham khảo loại trà hoặc cafe nào ạ?`
-  });
+  // 3) Tìm câu trả lời trong data.json
+  const answer = findAnswer(q);
+  if (answer) {
+    return res.json({ text: answer });
+  }
+
+  // 4) Fallback
+  return res.json({ text: chatData.fallback });
 });
 
 module.exports = router;

@@ -1,0 +1,157 @@
+paths:
+  /api/vnpay/create-qr:
+    post:
+      tags:
+        - VNPay
+      summary: Tạo QR code thanh toán VNPay
+      description: Tạo URL thanh toán VNPay cho đơn hàng (có hiệu lực 15 phút)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderId
+                - amount
+                - orderDesc
+              properties:
+                orderId:
+                  type: string
+                  description: ID của đơn hàng
+                  example: 507f1f77bcf86cd799439011
+                amount:
+                  type: number
+                  description: Số tiền thanh toán (VNĐ)
+                  example: 50000
+                orderDesc:
+                  type: string
+                  description: Mô tả đơn hàng
+                  example: Thanh toán đơn hàng #507f1f77bcf86cd799439011
+      responses:
+        "201":
+          description: Tạo URL thanh toán thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  paymentUrl:
+                    type: string
+                    example: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=5000000&vnp_Command=pay&vnp_CreateDate=20250115103000&vnp_CurrCode=VND&vnp_ExpireDate=20250115104500&vnp_IpAddr=127.0.0.1&vnp_Locale=vn&vnp_OrderInfo=Thanh%20toán%20đơn%20hàng&vnp_OrderType=other&vnp_ReturnUrl=http://localhost:5173/ordersuccess&vnp_TmnCode=22WUTE4Z&vnp_TxnRef=507f1f77bcf86cd799439011&vnp_Version=2.1.0&vnp_SecureHash=...
+        "400":
+          description: Thiếu tham số
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Thiếu tham số
+        "404":
+          description: Không tìm thấy đơn hàng
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Không tìm thấy đơn hàng
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+  /api/vnpay/payment-return:
+    get:
+      tags:
+        - VNPay
+      summary: Callback sau khi thanh toán VNPay
+      description: Endpoint nhận callback từ VNPay sau khi khách hàng thanh toán. Cập nhật trạng thái đơn hàng nếu thanh toán thành công (vnp_ResponseCode=00)
+      parameters:
+        - in: query
+          name: vnp_ResponseCode
+          required: true
+          schema:
+            type: string
+          description: Mã phản hồi từ VNPay (00 = thành công)
+          example: "00"
+        - in: query
+          name: vnp_TxnRef
+          required: true
+          schema:
+            type: string
+          description: ID đơn hàng
+          example: 507f1f77bcf86cd799439011
+        - in: query
+          name: vnp_Amount
+          schema:
+            type: string
+          description: Số tiền đã thanh toán (đơn vị VNĐ x 100)
+          example: "5000000"
+        - in: query
+          name: vnp_BankCode
+          schema:
+            type: string
+          description: Mã ngân hàng
+          example: NCB
+        - in: query
+          name: vnp_BankTranNo
+          schema:
+            type: string
+          description: Mã giao dịch ngân hàng
+          example: VNP01234567
+        - in: query
+          name: vnp_CardType
+          schema:
+            type: string
+          description: Loại thẻ
+          example: ATM
+        - in: query
+          name: vnp_OrderInfo
+          schema:
+            type: string
+          description: Thông tin đơn hàng
+          example: Thanh toán đơn hàng #507f1f77bcf86cd799439011
+        - in: query
+          name: vnp_PayDate
+          schema:
+            type: string
+          description: Thời gian thanh toán
+          example: "20250115103045"
+        - in: query
+          name: vnp_TransactionNo
+          schema:
+            type: string
+          description: Mã giao dịch VNPay
+          example: "14623456"
+        - in: query
+          name: vnp_SecureHash
+          schema:
+            type: string
+          description: Chữ ký bảo mật
+          example: abc123def456...
+      responses:
+        "302":
+          description: Redirect về trang kết quả
+          headers:
+            Location:
+              schema:
+                type: string
+              description: URL redirect về frontend
+              example: http://localhost:5173/ordersuccess?vnp_ResponseCode=00&vnp_TxnRef=507f1f77bcf86cd799439011&...
+        "500":
+          description: Lỗi server, redirect với thông báo lỗi
+          headers:
+            Location:
+              schema:
+                type: string
+              example: http://localhost:5173/ordersuccess?error=1&msg=Internal%20server%20error

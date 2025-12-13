@@ -51,7 +51,7 @@ export const PaymentMethod = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen mt-10">
+    <div className="bg-white min-h-screen">
       <div className="max-w-7xl mx-auto py-10 px-4 flex flex-col lg:flex-row gap-8">
         <div className="flex-1">
           <h1 className="text-4xl font-semibold mb-8">

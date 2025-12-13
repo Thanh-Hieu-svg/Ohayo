@@ -1,0 +1,54 @@
+paths:
+  /api/dashboard/summary:
+    get:
+      tags:
+        - Dashboard
+      summary: Lấy thống kê tổng quan
+      description: Trả về số lượng khách hàng, sản phẩm bán chạy nhất và số lượng đã bán
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Thống kê tổng quan
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummaryResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Server error"
+
+  /api/dashboard/category-percent:
+    get:
+      tags:
+        - Dashboard
+      summary: Thống kê tồn kho theo danh mục
+      description: Trả về số lượng tồn kho (stock) của từng danh mục sản phẩm
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Thống kê tồn kho theo danh mục
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CategoryStockResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Server error"

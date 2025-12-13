@@ -33,11 +33,14 @@ export const OurProduct = () => {
           Sản phẩm mới nhất
         </h2>
         <p className="font-semibold text-center text-4xl font-playfair text-[#252c30] py-4">
-          Trà mang đến những tác động tích cực
+          Thực phẩm sạch và an toàn
           <br />
-          đa dạng cho cơ thể
+          cho sức khỏe của bạn
         </p>
-
+        <p className="text-center text-lg font-medium text-[#252c30] py-2">
+          Siêu Thị Xanh - Đồng hành cùng bạn trong hành trình sống xanh và bền
+          vững.
+        </p>
         <div className="flex items-center gap-4 mb-8 justify-center py-4">
           <div className="w-28 h-1 bg-lime-500"></div>
           <div className="w-2 h-2 bg-black rounded-full"></div>

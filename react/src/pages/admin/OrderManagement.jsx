@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { ORDER_URL } from "../../api/api";
+import { Pagination } from "../../components/common/Pagination";
 
 const statusLabel = (status) => {
   switch (status) {
@@ -48,6 +49,8 @@ const paymentLabel = (method) => {
 export const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const fetchOrders = async () => {
     setLoading(true);
@@ -159,6 +162,15 @@ export const OrderManagement = () => {
     }
   };
 
+  // Tính toán items hiện tại cho trang
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentOrders = orders.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="space-y-6 p-4">
       <div className="justify-between items-center mb-4">
@@ -184,14 +196,14 @@ export const OrderManagement = () => {
                   Đang tải...
                 </td>
               </tr>
-            ) : orders.length === 0 ? (
+            ) : currentOrders.length === 0 ? (
               <tr>
                 <td colSpan={7} className="p-4 text-center text-gray-500">
                   Không có đơn hàng nào.
                 </td>
               </tr>
             ) : (
-              orders.map((order) => (
+              currentOrders.map((order) => (
                 <tr key={order._id} className="border-t">
                   <td className="p-4">
                     {order.shippingAddress?.name ||
@@ -227,8 +239,27 @@ export const OrderManagement = () => {
                     <button
                       className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
                       onClick={() => handleView(order)}
+                      title="Xem chi tiết"
                     >
-                      Xem
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
                     </button>
 
                     {order.status === "cho_xac_nhan" && (
@@ -237,8 +268,22 @@ export const OrderManagement = () => {
                         onClick={() =>
                           handleUpdateStatus(order._id, "dang_giao_hang")
                         }
+                        title="Xác nhận đơn hàng"
                       >
-                        Xác nhận
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-5 h-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                          />
+                        </svg>
                       </button>
                     )}
 
@@ -247,8 +292,22 @@ export const OrderManagement = () => {
                       <button
                         className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
                         onClick={() => handleCancel(order._id)}
+                        title="Hủy đơn hàng"
                       >
-                        Hủy
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-5 h-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18 18 6M6 6l12 12"
+                          />
+                        </svg>
                       </button>
                     )}
                   </td>
@@ -258,6 +317,13 @@ export const OrderManagement = () => {
           </tbody>
         </table>
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalItems={orders.length}
+        itemsPerPage={itemsPerPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

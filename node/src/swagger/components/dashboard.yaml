@@ -1,0 +1,30 @@
+components:
+  schemas:
+    DashboardSummaryResponse:
+      type: object
+      properties:
+        totalCustomers:
+          type: integer
+          description: Tổng số khách hàng
+          example: 150
+        topProduct:
+          type: string
+          nullable: true
+          description: Tên sản phẩm bán chạy nhất
+          example: "Rau cải xanh hữu cơ"
+        topProductSold:
+          type: integer
+          description: Số lượng đã bán của sản phẩm bán chạy nhất
+          example: 320
+
+    CategoryStockResponse:
+      type: object
+      properties:
+        category:
+          type: string
+          description: Tên danh mục
+          example: "Rau củ quả"
+        stock:
+          type: integer
+          description: Tổng số lượng tồn kho của danh mục
+          example: 500

@@ -158,10 +158,11 @@ export const Contact = () => {
           <div className="h-[400px] w-full">
             <iframe
               title="map"
-              src="https://www.google.com/maps?q=Ho%20Chi%20Minh,%20Vietnam&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.3651338658146!2d106.69204877512936!3d10.859808157650047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529c17978287d%3A0xec48f5a17b7d5741!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOZ3V54buFbiBU4bqldCBUaMOgbmggLSBDxqEgc-G7nyBxdeG6rW4gMTI!5e0!3m2!1svi!2s!4v1765606510283!5m2!1svi!2s"
               className="w-full h-full border rounded"
               allowFullScreen=""
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>

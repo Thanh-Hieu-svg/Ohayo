@@ -97,9 +97,11 @@ export const Shop = () => {
         ></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-white text-center">
           <h1 className="font-playfair text-[#252c30] text-3xl  md:text-5xl font-bold drop-shadow-lg mb-2">
-            Shop
+            Sản phẩm
           </h1>
-          <p className="text-sm md:text-base opacity-90">Home / Shop</p>
+          <p className="text-sm md:text-base opacity-90">
+            Trang chủ / sản phẩm
+          </p>
         </div>
       </div>
       <div className="container flex flex-col lg:flex-row gap-6">

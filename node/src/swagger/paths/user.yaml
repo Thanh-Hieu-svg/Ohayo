@@ -1,0 +1,183 @@
+paths:
+  /api/users:
+    get:
+      tags:
+        - Users
+      summary: Lấy danh sách khách hàng
+      description: Lấy tất cả người dùng có role là "user", sắp xếp theo ngày tạo giảm dần
+      responses:
+        "200":
+          description: Danh sách khách hàng
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+  /api/users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Lấy thông tin user theo ID
+      description: Trả về thông tin chi tiết của một user (không bao gồm password)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của user
+      responses:
+        "200":
+          description: Thông tin user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "404":
+          description: Không tìm thấy user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User not found
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+    put:
+      tags:
+        - Users
+      summary: Cập nhật thông tin user
+      description: Cập nhật username, email, role và password (nếu có) của user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: Nguyen Van A
+                email:
+                  type: string
+                  format: email
+                  example: nguyenvana@example.com
+                role:
+                  type: string
+                  enum: [user, admin]
+                  example: user
+                password:
+                  type: string
+                  format: password
+                  example: newPassword123
+                  description: Nếu có thì sẽ được mã hóa và cập nhật
+      responses:
+        "200":
+          description: Cập nhật thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Cập nhật thành công!
+                  user:
+                    $ref: "#/components/schemas/UserResponse"
+        "404":
+          description: Không tìm thấy tài khoản
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy tài khoản!
+        "500":
+          description: Lỗi cập nhật
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi cập nhật tài khoản!
+                  error:
+                    type: string
+
+    delete:
+      tags:
+        - Users
+      summary: Xóa user theo ID
+      description: Xóa vĩnh viễn một user khỏi hệ thống
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của user cần xóa
+      responses:
+        "200":
+          description: Xóa thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Đã xóa tài khoản thành công!
+        "404":
+          description: Không tìm thấy tài khoản
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Không tìm thấy tài khoản!
+        "500":
+          description: Lỗi xóa tài khoản
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lỗi xóa tài khoản!
+                  error:
+                    type: string

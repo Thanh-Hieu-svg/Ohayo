@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { AUTH_URL } from "../../api/api";
+import { Link } from "react-router-dom";
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -55,9 +56,10 @@ export const ForgotPassword = () => {
         <p className="text-sm text-red-500 text-center mt-4">{msg}</p>
         <p className="text-sm text-gray-500 text-center mt-6">
           Đã nhớ mật khẩu?{" "}
-          <a href="/login" className="text-green-500 hover:underline">
+          <Link to="/login" className="text-green-500 hover:underline">
+            {" "}
             Đăng nhập lại
-          </a>
+          </Link>
         </p>
       </div>
     </div>

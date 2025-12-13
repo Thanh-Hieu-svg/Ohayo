@@ -1,0 +1,170 @@
+paths:
+  /api/contacts:
+    get:
+      tags:
+        - Contacts
+      summary: Lấy danh sách liên hệ
+      description: Lấy tất cả liên hệ từ khách hàng, sắp xếp theo ngày gửi giảm dần
+      responses:
+        "200":
+          description: Danh sách liên hệ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactResponse"
+        "500":
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
+
+    post:
+      tags:
+        - Contacts
+      summary: Gửi liên hệ mới
+      description: Khách hàng gửi thông tin liên hệ (tên, email, điện thoại, chủ đề, nội dung)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - message
+              properties:
+                name:
+                  type: string
+                  example: Nguyen Van A
+                email:
+                  type: string
+                  format: email
+                  example: nguyenvana@example.com
+                phone:
+                  type: string
+                  example: 0912345678
+                subject:
+                  type: string
+                  example: Hỏi về sản phẩm
+                message:
+                  type: string
+                  example: Tôi muốn biết thêm thông tin về rau hữu cơ
+      responses:
+        "201":
+          description: Gửi liên hệ thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "400":
+          description: Lỗi đầu vào
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Thiếu thông tin bắt buộc
+
+  /api/contacts/{id}:
+    get:
+      tags:
+        - Contacts
+      summary: Lấy chi tiết liên hệ theo ID
+      description: Trả về thông tin chi tiết của một liên hệ
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của liên hệ
+          example: 507f1f77bcf86cd799439011
+      responses:
+        "200":
+          description: Thông tin liên hệ
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "404":
+          description: Không tìm thấy liên hệ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not found
+        "400":
+          description: ID không hợp lệ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid ID format
+
+    patch:
+      tags:
+        - Contacts
+      summary: Cập nhật trạng thái liên hệ
+      description: Cập nhật trạng thái đã đọc (isRead) hoặc các thông tin khác của liên hệ
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID của liên hệ cần cập nhật
+          example: 507f1f77bcf86cd799439011
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isRead:
+                  type: boolean
+                  example: true
+                  description: Đánh dấu đã đọc
+      responses:
+        "200":
+          description: Cập nhật thành công
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "404":
+          description: Không tìm thấy liên hệ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Contact not found
+        "400":
+          description: Lỗi cập nhật
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid data

@@ -1,0 +1,48 @@
+components:
+  schemas:
+    BlogResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 507f1f77bcf86cd799439011
+        title:
+          type: string
+          example: 10 loại rau củ tốt cho sức khỏe
+        content:
+          type: string
+          example: Rau xanh chứa nhiều vitamin và khoáng chất...
+        author:
+          type: string
+          example: Nguyen Van A
+        thumbnailUrl:
+          type: string
+          example: https://example.com/thumbnail.jpg
+        createdAt:
+          type: string
+          format: date-time
+          example: 2025-01-10T10:30:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2025-01-12T15:45:00.000Z
+
+    Blog:
+      type: object
+      required:
+        - title
+        - content
+        - author
+      properties:
+        title:
+          type: string
+          example: 10 loại rau củ tốt cho sức khỏe
+        content:
+          type: string
+          example: Rau xanh chứa nhiều vitamin và khoáng chất...
+        author:
+          type: string
+          example: Nguyen Van A
+        thumbnailUrl:
+          type: string
+          example: https://example.com/thumbnail.jpg
