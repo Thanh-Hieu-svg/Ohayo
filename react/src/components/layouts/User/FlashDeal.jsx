@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa6";
 import FlashDealImage from "../../../assets/images/Banner/carousel-3.jpg";
+import { useNavigate } from "react-router-dom";
 
 export const FlashDeal = () => {
   const features = [
@@ -10,6 +11,8 @@ export const FlashDeal = () => {
     "Đa dạng mặt hàng thân thiện môi trường",
     "Góp phần bảo vệ sức khỏe và hành tinh",
   ];
+
+  const Navigate = useNavigate();
 
   return (
     <div className="relative h-[500px] md:h-[600px] overflow-hidden text-white font-sans mb-20">
@@ -50,7 +53,10 @@ export const FlashDeal = () => {
             ))}
           </div>
 
-          <button className="bg-white text-[#252c30] px-8 py-4 rounded-full font-semibold w-fit hover:bg-gray-200 transition">
+          <button
+            onClick={() => Navigate("/blog")}
+            className="bg-white text-[#252c30] px-8 py-4 rounded-full font-semibold w-fit hover:bg-gray-200 transition"
+          >
             Khám Phá Thêm
           </button>
         </div>

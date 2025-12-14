@@ -1,7 +1,10 @@
 import React from "react";
 import Article_bg from "../../../assets/images1059758_1_trang_3.gif";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const Article = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white py-20">
       <div className="container flex items-center justify-center px-6 md:px-20 py-12">
@@ -47,7 +50,10 @@ export const Article = () => {
             khỏe và môi trường, góp phần xây dựng một cộng đồng bền vững.
           </p>
 
-          <button className="bg-lime-500 hover:text-[#88b44e] text-white px-6 py-2 rounded-full transition">
+          <button
+            onClick={() => navigate("/blog")}
+            className="bg-lime-500 hover:bg-[#88b44e] text-white px-6 py-2 rounded-full transition"
+          >
             Đọc Thêm
           </button>
         </div>

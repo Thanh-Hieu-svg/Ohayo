@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import IconAIChatbot from "../../../../assets/images/iconAIChatbot.gif";
+import IconAIChatbot from "../../../../assets/bee2.gif";
 import IconUser from "../../../../assets/images/icon_user.png";
 import { CHATBOT_URL } from "../../../../api/api";
 import { Products } from "../Products/Products";

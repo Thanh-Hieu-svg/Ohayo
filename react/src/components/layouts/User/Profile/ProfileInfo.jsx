@@ -12,8 +12,11 @@ export const ProfileInfo = () => {
 
   if (!user) return <div>Đang tải...</div>;
 
-  const avatar = user.avatar || null;
-  const firstChar = user.name ? user.name.charAt(0).toUpperCase() : "";
+  const username = user?.username || "User";
+  const avatar = user?.avatar;
+
+  // Lấy ký tự đầu tiên của username (tên đăng ký)
+  const firstChar = username.charAt(0).toUpperCase();
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
@@ -25,7 +28,7 @@ export const ProfileInfo = () => {
             className="w-24 h-24 rounded-full border-2 border-[#88b44e] object-cover"
           />
         ) : (
-          <div className="w-24 h-24 flex items-center justify-center rounded-full border-2 border-[#88b44e] bg-gray-200 text-3xl font-bold">
+          <div className="w-24 h-24 flex items-center justify-center rounded-full border-2 border-[#88b44e] bg-[#88b44e] text-3xl text-white font-bold">
             {firstChar}
           </div>
         )}
